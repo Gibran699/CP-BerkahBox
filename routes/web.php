@@ -10,7 +10,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\UserDonasiController;
 use App\Http\Controllers\UserProfilController;
-use App\Http\Controllers\PengeluaranController;
+use pp\Http\Controllers\PengeluaranController;
 use Illuminate\Support\Facades\Artisan;
 
 

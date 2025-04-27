@@ -13,7 +13,7 @@ use App\Models\Infodonasi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\UserProfilController;
+// use App\Http\Controllers\UserProfilController;
 
 class UserProfilController extends Controller
 {
