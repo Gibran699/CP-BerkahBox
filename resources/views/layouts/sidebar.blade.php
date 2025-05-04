@@ -67,11 +67,11 @@
                 <span>Pengajuan Donasi</span></a>
         </li>
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.donasi_jemput') }}">
                 <i class="fas fa-truck"></i>
                 <span>Jemput Donasi</span></a>
-        </li>
+        </li> --}}
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.laporan_donasi') }}">
