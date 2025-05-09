@@ -38,7 +38,7 @@
         <a class="text-decoration-none text-danger" href="{{ route('password.request') }}">Lupa Kata Sandi?</a>
     </div>
     <div class="text-center mt-3">
-        <p>Belum punya akun? <a class="text-decoration-none" href="{{ route('auth.register') }}">Daftar di sini</a></p>
+        <p>Belum punya akun? <a class="text-decoration-none" href="{{ route('auth.register') }}">Ayo Daftar di sini</a></p>
     </div>
     <div class="text-center mt-3">
         <a href="{{ route('home') }}" class="text-decoration-none btn-link">Kembali</a>
