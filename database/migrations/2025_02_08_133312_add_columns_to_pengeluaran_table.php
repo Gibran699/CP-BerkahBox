@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 class AddColumnsToPengeluaranTable extends Migration
 {
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 37a3bd17db12ccfe625630e508d696c44a17e225
     // public function up()
     // {
     //     Schema::table('pengeluaran', function (Blueprint $table) {
