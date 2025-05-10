@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text">BERKAH BOX</div>
+        <div class="sidebar-brand-text">MASJID BERKAH BOX</div>
     </a>
 
     <!-- Divider -->
@@ -121,7 +121,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('user.pengajuanuser') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Riwayat Pengajuan</span></a>
+                <span>Riwayat Pengajuan Donasi</span></a>
         </li>
     @endif
 
