@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Galeri Kegiatan')
+@section('title', 'Galeri Kegiatan Berkah Box Balikpapan')
 
 @section('contents')
     <div class="card shadow mb-4">
@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="card-body">
-        <a href="{{ route('admin.tambahgaleri') }}" class="btn btn-primary mb-3">Tambah</a>
+        <a href="{{ route('admin.tambahgaleri') }}" class="btn btn-primary mb-3">Tambah Kegiatan</a>
 
         <div class="table-responsive">
             <table class="table table-bordered text-dark font-weight-bold" id="dataTable" width="100%" cellspacing="0">

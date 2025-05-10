@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Struktur Organisasi Berkah Box Balikpapan')
+@section('title', 'Struktur Organisasi Yayasan Berkah Box Balikpapan')
 
 @section('contents')
     <div class="card shadow mb-4">
