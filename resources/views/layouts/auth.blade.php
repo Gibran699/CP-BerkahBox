@@ -13,13 +13,13 @@
 </head>
 
 <body
-    style="background: linear-gradient(to bottom, #004803, #75de64); min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    style="background: linear-gradient(to bottom,rgb(230, 118, 13),rgb(196, 160, 41)); min-height: 100vh; display: flex; align-items: center; justify-content: center;">
 
     <section class="container-fluid px-3 justify-content-center align-items-center">
         <div class="login-card p-4">
             <div class="text-center">
                 <img src="{{ asset('icon/logo.png') }}" alt="Logo" style="width: 80px;">
-                <h4 class="sub-judul mt-3">YAYASAN</h4>
+                <h4 class="sub-judul mt-3">YAYASAN MASJID</h4>
                 <h2 class="judul">BERKAH BOX</h2>
             </div>
 

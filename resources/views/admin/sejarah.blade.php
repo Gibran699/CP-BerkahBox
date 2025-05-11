@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Sejarah Yayasan')
+@section('title', 'Sejarah Yayasan Berkah Box Balikpapan')
 
 @section('contents')
     <div class="container mt-3">

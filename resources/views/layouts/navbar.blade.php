@@ -3,7 +3,7 @@
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
             <img src="../../icon/logonavbar.png" height="50" width="50" style="margin-right: 10px;" alt="Logo">
-            <span>Berkah-Box</span>
+            <span> Masjid Berkah-Box</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

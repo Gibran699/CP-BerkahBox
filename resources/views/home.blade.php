@@ -49,10 +49,10 @@
                     <h2 class="sub-judul fw-bold py-3">AJUKAN DONASI</h2>
                 </div>
                 <h4 class="fw-bold">SEDERHANA DAN BERMAKNA</h4>
-                <p style="text-align: justify; font-size: 16px;">"Mari berkontribusi untuk perubahan positif untuk
-                    lingkungan sekitar
-                    dengan pengajuan donasi. Satu langkah kecil untuk memberikan dampak besar."</p>
-                <a href="{{ route('form.pengajuan') }}" class="btn btn-success btn-ajukan">Ajukan</a>
+                <p style="text-align: justify; font-size: 16px;">"Mari berkontribusi untuk perubahan positif bagi
+                    lingkungan sekitar anda
+                    dengan pengajuan donasi. Satu langkah kecil dari anda dapat memberikan dampak besar bagi kami."</p>
+                <a href="{{ route('form.pengajuan') }}" class="btn btn-success btn-ajukan">Ajukan Donasi Anda</a>
             </div>
             <!-- Bagian Gambar -->
             <div class="col-lg-6 col-md-12 d-flex justify-content-center mt-4 mt-lg-0" data-aos="fade-left">
@@ -134,7 +134,7 @@
     <div class="container">
         <div class="d-flex align-items-center mb-3">
             <div class="stripe me-4"></div>
-            <h2 class="sub-judul fw-bold">DOKUMENTASI KEGIATAN</h2>
+            <h2 class="sub-judul fw-bold">DOKUMENTASI KEGIATAN KAMI</h2>
         </div>
         <div class="gallery-grid">
             @foreach ($galeriuser->take(4) as $item)
