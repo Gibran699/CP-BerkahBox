@@ -41,7 +41,6 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="formDropdown">
                         <li><a class="dropdown-item" href="{{ route('form.pengajuan') }}">Pengajuan Donasi</a></li>
-                        <li><a class="dropdown-item" href="{{ route('form.jemput') }}">Donasi Jemput</a></li>
                     </ul>
                 </li>
             </ul>

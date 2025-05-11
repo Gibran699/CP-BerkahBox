@@ -71,7 +71,7 @@
 
                 <!-- Foto Kondisi -->
                 <div class="mt-3">
-                    <label style="font-size: 14px;">Foto Kondisi</label>
+                    <label style="font-size: 14px;">Foto Bukti</label>
                     <!-- Foto 1 -->
                     <div style="display: flex; align-items: center;">
                         <input type="file" id="foto1" name="foto1" required
