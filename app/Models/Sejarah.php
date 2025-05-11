@@ -17,9 +17,11 @@ class Sejarah extends Model
         'id_sejarah',
         'id',
         'tekssejarah',
+        'perjalananAwal',
+        'awalPendirian',
+        'perkembangan',
+        'masaKini',
         'tekssejarah2',
-        'tekssejarah3',
-        'tekssejarah4',
     ];
     public function users(){
         return $this->belongsTo(User::class, 'id');

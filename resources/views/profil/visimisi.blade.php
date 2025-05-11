@@ -14,13 +14,13 @@
                         <img src="../images/visi.png" width="350" height="350" class="img-fluid" alt="Mission Image">
                     </div>
                     <div class="col-lg-6">
-                        <h4 class="text-success sub-judul fw-bold mb-4">VISI</h4>
+                        <h4 class="judul-visi sub-judul fw-bold mb-4">VISI</h4>
                         <p style="text-align: justify;">{{ $visimisi->visi }}</p>
                     </div>
             </div>
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h4 class="text-success sub-judul fw-bold">MISI</h4>
+                    <h4 class="judul-visi sub-judul fw-bold">MISI</h4>
                     <ul style="text-align: justify;">
                         @foreach (explode("\n", $visimisi->misi) as $point)
                             <li>{{ $point }}</li>
