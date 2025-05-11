@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-use App\Http\Controllers\ProfilController;
+// use App\Http\Controllers\ProfilController;
 
 class ProfilController extends Controller
 {
@@ -40,18 +40,22 @@ class ProfilController extends Controller
     public function postTambahSejarah(Request $request) {
         $request->validate([
             'tekssejarah' => 'required',
+            'perjalananAwal' => 'required',
+            'awalPendirian' => 'required',
+            'perkembangan' => 'required',
+            'masaKini' => 'required',
             'tekssejarah2' => 'required',
-            'tekssejarah3' => 'required',
-            'tekssejarah4' => 'required',
         ]);
 
         $sejarah = new Sejarah;
         $sejarah->id = Auth::id();
         
         $sejarah ->tekssejarah  = $request->tekssejarah;
+        $sejarah ->perjalananAwal  = $request->perjalananAwal;
+        $sejarah ->awalPendirian  = $request->awalPendirian;
+        $sejarah ->perkembangan  = $request->perkembangan;
+        $sejarah ->masaKini  = $request->masaKini;
         $sejarah ->tekssejarah2  = $request->tekssejarah2;
-        $sejarah ->tekssejarah3  = $request->tekssejarah3;
-        $sejarah ->tekssejarah4  = $request->tekssejarah4;
         $sejarah ->save();
         
         if($sejarah ) {
@@ -67,19 +71,22 @@ class ProfilController extends Controller
     public function postEditSejarah(Request $request, $id) {
         $request->validate([
             'tekssejarah' => 'required',
+            'perjalananAwal' => 'required',
+            'awalPendirian' => 'required',
+            'perkembangan' => 'required',
+            'masaKini' => 'required',
             'tekssejarah2' => 'required',
-            'tekssejarah3' => 'required',
-            'tekssejarah4' => 'required',
         ]);
         
         $sejarah = Sejarah::find($id);
         
         $sejarah ->tekssejarah  = $request->tekssejarah;
+        $sejarah ->perjalananAwal  = $request->perjalananAwal;
+        $sejarah ->awalPendirian  = $request->awalPendirian;
+        $sejarah ->perkembangan  = $request->perkembangan;
+        $sejarah ->masaKini  = $request->masaKini;
         $sejarah ->tekssejarah2  = $request->tekssejarah2;
-        $sejarah ->tekssejarah3  = $request->tekssejarah3;
-        $sejarah ->tekssejarah4  = $request->tekssejarah4;
-
-        $sejarah->save();
+        $sejarah ->save();
         
         if($sejarah){
             return back()->with('success', 'sejarah berhasil di update!'); 

@@ -10,7 +10,7 @@ use App\Models\Pengajuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User;
-use App\Http\Controllers\UserHomeController;
+// use App\Http\Controllers\UserHomeController;
 
 class UserHomeController extends Controller
 {

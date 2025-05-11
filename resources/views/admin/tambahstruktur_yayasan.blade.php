@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Struktur Organisasi Berkah Box Balikapapan')
+@section('title', 'Tambah Struktur Organisasi Berkah Box Balikpapan')
 
 @section('contents')
     <div class="container">
@@ -51,24 +51,24 @@
                                 <label class="text-secondary mb-2">Jabatan</label>
                                 <!-- Dropdown untuk jabatan -->
                                 <select class="form-control" name="jabatan" required>
-                                    <option value="Pembina Berkah Box Balikapapan"
-                                        {{ old('jabatan') == 'Pembina Berkah Box Balikapapan' ? 'selected' : '' }}>Pembina
-                                        Berkah Box Balikapapan</option>
-                                    <option value="Ketua Berkah Box Balikapapan"
-                                        {{ old('jabatan') == 'Ketua Berkah Box Balikapapan' ? 'selected' : '' }}>Ketua
-                                        Berkah Box Balikapapan</option>
-                                    <option value="Sekretaris Berkah Box Balikapapan"
-                                        {{ old('jabatan') == 'Sekretaris Berkah Box Balikapapan' ? 'selected' : '' }}>
-                                        Sekretaris Berkah Box Balikapapan</option>
-                                    <option value="Bendahara Berkah Box Balikapapan"
-                                        {{ old('jabatan') == 'Bendahara Berkah Box Balikapapan' ? 'selected' : '' }}>
-                                        Bendahara Berkah Box Balikapapan</option>
-                                    <option value="Ketua Pengawas Berkah Box Balikapapan"
-                                        {{ old('jabatan') == 'Ketua Pengawas Berkah Box Balikapapan' ? 'selected' : '' }}>
-                                        Ketua Pengawas Berkah Box Balikapapan</option>
-                                    <option value="Anggota Berkah Box Balikapapan"
-                                        {{ old('jabatan') == 'Anggota Berkah Box Balikapapan' ? 'selected' : '' }}>Anggota
-                                        Berkah Box Balikapapan</option>
+                                    <option value="Pembina Berkah Box Balikpapan"
+                                        {{ old('jabatan') == 'Pembina Berkah Box Balikpapan' ? 'selected' : '' }}>Pembina
+                                        Berkah Box Balikpapan</option>
+                                    <option value="Ketua Berkah Box Balikpapan"
+                                        {{ old('jabatan') == 'Ketua Berkah Box Balikpapan' ? 'selected' : '' }}>Ketua
+                                        Berkah Box Balikpapan</option>
+                                    <option value="Sekretaris Berkah Box Balikpapan"
+                                        {{ old('jabatan') == 'Sekretaris Berkah Box Balikpapan' ? 'selected' : '' }}>
+                                        Sekretaris Berkah Box Balikpapan</option>
+                                    <option value="Bendahara Berkah Box Balikpapan"
+                                        {{ old('jabatan') == 'Bendahara Berkah Box Balikpapan' ? 'selected' : '' }}>
+                                        Bendahara Berkah Box Balikpapan</option>
+                                    <option value="Ketua Pengawas Berkah Box Balikpapan"
+                                        {{ old('jabatan') == 'Ketua Pengawas Berkah Box Balikpapan' ? 'selected' : '' }}>
+                                        Ketua Pengawas Berkah Box Balikpapan</option>
+                                    <option value="Anggota Berkah Box Balikpapan"
+                                        {{ old('jabatan') == 'Anggota Berkah Box Balikpapan' ? 'selected' : '' }}>Anggota
+                                        Berkah Box Balikpapan</option>
                                 </select>
                             </div>
 

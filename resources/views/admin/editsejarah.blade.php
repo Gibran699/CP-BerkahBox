@@ -41,18 +41,23 @@
                             </div>
 
                             <div class="form-group mt-1">
-                                <label class="text-secondary mb-2">Sejarah Paragraf 2</label>
-                                <textarea class="form-control" name="tekssejarah2" style="height: 250px" required>{{ $data->tekssejarah2 }}</textarea>
+                                <label class="text-secondary mb-2">Perjalanan Awal</label>
+                                <textarea class="form-control" name="perjalananAwal" style="height: 250px" required>{{ $data->tekssejarah2 }}</textarea>
                             </div>
 
                             <div class="form-group mt-1">
-                                <label class="text-secondary mb-2">Sejarah Paragraf 3</label>
-                                <textarea class="form-control" name="tekssejarah3" style="height: 250px" required>{{ $data->tekssejarah3 }}</textarea>
+                                <label class="text-secondary mb-2">Awal Pendirian</label>
+                                <textarea class="form-control" name="awalPendirian" style="height: 250px" required>{{ $data->tekssejarah3 }}</textarea>
                             </div>
 
                             <div class="form-group mt-1">
-                                <label class="text-secondary mb-2">Sejarah Paragraf 4</label>
-                                <textarea class="form-control" name="tekssejarah4" style="height: 250px" required>{{ $data->tekssejarah4 }}</textarea>
+                                <label class="text-secondary mb-2">Perkembangan</label>
+                                <textarea class="form-control" name="perkembangan" style="height: 250px" required>{{ $data->tekssejarah4 }}</textarea>
+                            </div>
+
+                            <div class="form-group mt-1">
+                                <label class="text-secondary mb-2">Masa Kini</label>
+                                <textarea class="form-control" name="masaKini" style="height: 250px" required>{{ $data->tekssejarah4 }}</textarea>
                             </div>
 
                             <button type="submit" class="btn btn-success mt-5">Edit</button>

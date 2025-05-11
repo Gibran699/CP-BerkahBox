@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text">BERKAH BOX</div>
+        <div class="sidebar-brand-text">MASJID BERKAH BOX</div>
     </a>
 
     <!-- Divider -->
@@ -67,11 +67,11 @@
                 <span>Pengajuan Donasi</span></a>
         </li>
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.donasi_jemput') }}">
                 <i class="fas fa-truck"></i>
                 <span>Jemput Donasi</span></a>
-        </li>
+        </li> --}}
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.laporan_donasi') }}">
@@ -121,7 +121,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('user.pengajuanuser') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Riwayat Pengajuan</span></a>
+                <span>Riwayat Pengajuan Donasi</span></a>
         </li>
     @endif
 

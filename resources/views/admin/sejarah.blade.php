@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Sejarah Yayasan')
+@section('title', 'Sejarah Yayasan Berkah Box Balikpapan')
 
 @section('contents')
     <div class="container mt-3">
@@ -36,9 +36,11 @@
                     <tr>
                         <th>No</th>
                         <th>Sejarah Paragraf 1</th>
-                        <th>Sejarah Paragraf 2</th>
-                        <th>Sejarah Paragraf 3</th>
-                        <th>Sejarah Paragraf 4</th>
+                        <th>Perjalanan Awal</th>
+                        <th>Awal Pendirian</th>
+                        <th>Perkembangan</th>
+                        <th>Masa Kini</th>
+                        <th>Sejarah Paragraf 2 (Akhir)</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -48,9 +50,11 @@
                         <tr>
                             <td scope="row">{{ $no++ }}</td>
                             <td>{{ $sejarah->tekssejarah }}</td>
+                            <td>{{ $sejarah->perjalananAwal }}</td>
+                            <td>{{ $sejarah->awalPendirian }}</td>
+                            <td>{{ $sejarah->perkembangan }}</td>
+                            <td>{{ $sejarah->masaKini }}</td>
                             <td>{{ $sejarah->tekssejarah2 }}</td>
-                            <td>{{ $sejarah->tekssejarah3 }}</td>
-                            <td>{{ $sejarah->tekssejarah4 }}</td>
                             <td class="text-center">
                                 <a href="/admin/editsejarah/{{ $sejarah->id_sejarah }}" class="text-warning mx-2">
                                     <i class="fas fa-edit"></i>

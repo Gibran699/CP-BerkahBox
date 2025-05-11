@@ -18,9 +18,11 @@ return new class extends Migration
             $table->unsignedBigInteger('id')->nullable();
             $table->foreign('id')->references('id')->on('users')->onDelete('restrict');
             $table->longText('tekssejarah');
+            $table->longText('perjalananAwal');
+            $table->longText('awalPendirian');
+            $table->longText('perkembangan');
+            $table->longText('masaKini');
             $table->longText('tekssejarah2');
-            $table->longText('tekssejarah3');
-            $table->longText('tekssejarah4');
             $table->timestamps();
         });
     }
