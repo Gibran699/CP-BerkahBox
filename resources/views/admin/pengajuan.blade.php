@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Pengajuan Donasi')
+@section('title', 'Pengajuan Donasi Berkah Box Balikpapan')
 
 @section('contents')
     <div class="card shadow mb-4">
