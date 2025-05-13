@@ -44,7 +44,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        @include('layouts.sidebar')
+        {{-- @include('layouts.sidebar') --}}
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -54,18 +54,18 @@
             <div id="content">
 
                 <!-- Topbar -->
-                @include('layouts.navbaradmin')
+                {{-- @include('layouts.navbaradmin') --}}
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
+                    {{-- <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
-                    </div>
+                    </div> --}}
 
-                    @yield('contents')
+                    {{-- @yield('contents') --}}
 
                     <!-- Content Row -->
 
