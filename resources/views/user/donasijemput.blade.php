@@ -19,7 +19,7 @@
                             <th>Barang Donasi</th>
                             <th>Foto Pengambilan</th>
                             <th>Foto Penyerahan</th>
-                            <th>Status</th>
+                            <th>Status Donasi</th>
                         </tr>
                     </thead>
                     <tbody>

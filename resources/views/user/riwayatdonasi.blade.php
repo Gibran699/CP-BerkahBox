@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Riwayat Donasi')
+@section('title', 'Riwayat Donasi Anda')
 
 @section('contents')
     <div class="container-fluid">
@@ -16,8 +16,8 @@
                                 <th>No</th>
                                 <th>Tanggal Donasi</th>
                                 <th>Program Donasi</th>
-                                <th>Nominal</th>
-                                <th>Status</th>
+                                <th>Nominal Donasi</th>
+                                <th>Status Donasi</th>
                             </tr>
                         </thead>
                         <tbody>
