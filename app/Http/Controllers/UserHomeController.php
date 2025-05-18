@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User;
 // use App\Http\Controllers\UserHomeController;
+use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
 
 class UserHomeController extends Controller
 {
@@ -37,9 +39,60 @@ class UserHomeController extends Controller
                 ->sum('nominal');
         });
 
-        
-    
-        return view("home", compact('user', 'program', 'galeriuser', 'kontak', 'sejarahuser', 'jumlahDonasiDiterima', 'jumlahDonatur', 'jumlahPengajuan'));
+        $today = Carbon::now('Asia/Makassar')->format('Y-m-d');
+        $response = Http::withOptions([
+            'verify' => false,
+        ])->get("https://api.myquran.com/v2/sholat/jadwal/2308/{$today}");
+
+        $jadwal = $response->json()['data']['jadwal'];
+
+        $now = Carbon::now('Asia/Makassar')->setSeconds(0);
+
+        // dd($now);
+
+        // Buat waktu sholat
+        $jadwalSholat = [
+            'Subuh'   => Carbon::createFromFormat('Y-m-d H:i', "$today {$jadwal['subuh']}", 'Asia/Makassar')->setSeconds(0),
+            'Dzuhur'  => Carbon::createFromFormat('Y-m-d H:i', "$today {$jadwal['dzuhur']}", 'Asia/Makassar')->setSeconds(0),
+            'Ashar'   => Carbon::createFromFormat('Y-m-d H:i', "$today {$jadwal['ashar']}", 'Asia/Makassar')->setSeconds(0),
+            'Maghrib' => Carbon::createFromFormat('Y-m-d H:i', "$today {$jadwal['maghrib']}", 'Asia/Makassar')->setSeconds(0),
+            'Isya'    => Carbon::createFromFormat('Y-m-d H:i', "$today {$jadwal['isya']}", 'Asia/Makassar')->setSeconds(0),
+        ];
+
+        $sholatBerikutnya = null;
+
+        foreach ($jadwalSholat as $nama => $waktu) {
+            $waktuDenganGracePeriod = $waktu->copy()->addMinutes(15); 
+            if ($now->lessThan($waktuDenganGracePeriod)) {
+                $sholatBerikutnya = [
+                    'nama' => $nama,
+                    'jam' => $waktu->format('H:i'),
+                ];
+                break;
+            }
+        }
+
+        if (!$sholatBerikutnya) {
+            $besok = Carbon::tomorrow('Asia/Makassar')->format('Y-m-d');
+            $responseBesok = Http::withOptions([
+                'verify' => false,
+            ])->get("https://api.myquran.com/v2/sholat/jadwal/2308/{$besok}");
+
+            $jadwalBesok = $responseBesok->json()['data']['jadwal'];
+
+            $sholatBerikutnya = [
+                'nama' => 'Subuh',
+                'jam' => $jadwalBesok['subuh'],
+                'tanggal' => $besok,
+            ];
+        }
+
+        // Kirim variabel ke view
+        return view("home", compact(
+            'user', 'program', 'galeriuser', 'kontak', 'sejarahuser',
+            'jumlahDonasiDiterima', 'jumlahDonatur', 'jumlahPengajuan',
+            'sholatBerikutnya'
+        ));
     }
 
 }

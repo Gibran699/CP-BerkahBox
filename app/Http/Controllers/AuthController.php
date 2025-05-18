@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Donasi;
-use App\Http\Controllers\AuthController;
+// use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
