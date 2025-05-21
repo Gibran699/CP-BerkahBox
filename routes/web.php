@@ -36,6 +36,7 @@ Route::get('/galeri/galeri', [UserProfilController::class, 'UserGaleri'])->name(
 Route::get('/profil/sejarah', [UserProfilController::class, 'UserSejarah'])->name('profil.sejarah');
 Route::get('/profil/visimisi', [UserProfilController::class, 'UserVisi'])->name('profil.visimisi');
 Route::get('/profil/struktur', [UserProfilController::class, 'UserStruktur'])->name('profil.struktur');
+Route::get('/profil/fasilitas', [UserProfilController::class, 'UserFasilitas'])->name('profil.fasilitas');
 
 // submit user
 Route::get('/donasi/user', [UserDonasiController::class, 'showDonasiForm'])->name('donasi.donasi');
@@ -127,7 +128,7 @@ Route::group(['middleware' => ['auth', 'admin']], function ()
     Route::get('/admin/tambahstruktur_yayasan', [ProfilController::class, 'tambahStruktur'])->name('admin.tambahstruktur_yayasan');
     Route::get('/admin/editstruktur_yayasan/{id_struktur_yayasan}', [ProfilController::class, 'editStruktur'])->name('admin.editstruktur_yayasan');
     Route::get('/admin/deletestruktur_yayasan/{id_struktur_yayasan}', [ProfilController::class, 'deleteStruktur'])->name('admin.deletestruktur_yayasan');
-    
+
     // end profil
 
     // pengajuan
@@ -152,7 +153,7 @@ Route::group(['middleware' => ['auth', 'admin']], function ()
     Route::get('/admin/editkontak/{id_kontak}', [ProfilController::class, 'editKontak'])->name('admin.editkontak');
     Route::get('/admin/deletekontak/{id_kontak}', [ProfilController::class, 'deleteKontak'])->name('admin.deletekontak');
 
-});   
+});
 
 // post login
 

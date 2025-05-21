@@ -9,6 +9,7 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/lightbox.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     {{-- AOS --}}
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -85,6 +86,11 @@
 
 
     {{-- end footer --}}
+    <!-- Tombol WhatsApp Melayang -->
+    <a href="https://wa.me/628112168676" class="whatsapp-button" target="_blank" title="Chat via WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
 
     <script>
         let currentIndex = 0;
@@ -116,6 +122,14 @@
     <script>
         AOS.init();
     </script>
+    <script>
+
+    document.querySelectorAll('.fasilitas-card').forEach(card => {
+    card.addEventListener('click', function() {
+        this.classList.toggle('clicked'); // Toggle the clicked class on card click
+    });
+});
+</script>
 
     @yield('scripts')
 </body>

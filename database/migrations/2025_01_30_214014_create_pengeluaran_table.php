@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('pengeluaran', function (Blueprint $table) {
             $table->id();
-            $table->date('tanggal'); 
-            $table->string('deskripsi'); 
-            $table->decimal('pengeluaran', 15, 2); 
+            $table->date('tanggal');
+            $table->string('deskripsi');
+            $table->decimal('pengeluaran', 15, 2);
+            $table->string('jumlah');
             $table->timestamps();
         });
     }

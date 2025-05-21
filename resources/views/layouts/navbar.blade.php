@@ -25,6 +25,8 @@
                         <li><a class="dropdown-item" href="{{ route('profil.sejarah') }}">Sejarah</a></li>
                         <li><a class="dropdown-item" href="{{ route('profil.visimisi') }}">Visi & Misi</a></li>
                         <li><a class="dropdown-item" href="{{ route('profil.struktur') }}">Struktur Organisasi</a></li>
+                        <li><a class="dropdown-item" href="{{ route('profil.fasilitas') }}">Fasilitas</a></li>
+
                     </ul>
                 </li>
                 <li class="nav-item">
