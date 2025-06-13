@@ -149,6 +149,17 @@ body {
     color: #fff;
 }
 
+.btn-success {
+    --bs-btn-active-bg: #ffc107; 
+    --bs-btn-active-border-color: #e0a800; 
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2); 
+}
+
+.btn-success {
+    --bs-btn-hover-bg: #ffcc00;
+    --bs-btn-hover-border-color: #ffb300;
+}
+
 /* Navbar */
 .nav-item .nav-link {
     font-size: 16px;
@@ -210,8 +221,8 @@ body {
 }
 
 .border-item:hover {
-    background-color: #d8ffe1;
-    border-color: #004803;
+    background-color: #fffeed;
+    /* border-color: #ebf396; */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
 }
@@ -477,10 +488,10 @@ body {
         margin-top: -30px;
     }
 
-    #border .row {
+    /* #border .row {
         grid-template-columns: repeat(3, 1fr);
         gap: 3px;
-    }
+    } */
 
     .border-item {
         padding: 8px;
