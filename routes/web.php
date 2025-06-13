@@ -11,6 +11,7 @@ use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\UserDonasiController;
 use App\Http\Controllers\UserProfilController;
 use pp\Http\Controllers\PengeluaranController;
+use App\Http\Controllers\DonasiFormController;
 use Illuminate\Support\Facades\Artisan;
 
 
@@ -50,10 +51,14 @@ Route::post('/midtrans/callback', [DonasiController::class, 'callback']);
 Route::post('/donasi/lanjut-pembayaran', [DonasiController::class, 'lanjutPembayaran'])->name('donasi.lanjut-pembayaran');
 
 Route::get('/form/pengajuan', [UserProfilController::class, 'UserPengajuan'])->name('form.pengajuan');
-Route::post('/pengajuan/submit', [UserProfilController::class, 'submitPengajuanForm'])->name('pengajuan.submit');
+// Route::post('/pengajuan/submit', [UserProfilController::class, 'submitPengajuanForm'])->name('pengajuan.submit');
 
 Route::get('/form/jemput', [UserProfilController::class, 'UserDonasiJemput'])->name('form.jemput');
 Route::post('/jemput/submit', [UserProfilController::class, 'submitDonasiJemputForm'])->name('jemput.submit');
+
+// Form Donasi
+Route::post('/donasi-form', [DonasiFormController::class, 'store'])->name('pengajuan.submit');
+
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/auth/login', [AuthController::class, 'login'])->name('auth.login');

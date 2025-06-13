@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DonasiController extends Controller
 {
+
     public function formDonasi(Request $request){
         $id_program_donasi = $request->id_program_donasi;
         $kontak = Kontak::all();
