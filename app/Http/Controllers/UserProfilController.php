@@ -8,6 +8,7 @@ use App\Models\Program;
 use App\Models\Sejarah;
 use App\Models\Struktur;
 use App\Models\Visimisi;
+use App\Models\Fasilitas;
 use App\Models\Pengajuan;
 use App\Models\Infodonasi;
 use Illuminate\Support\Facades\Auth;
@@ -20,39 +21,45 @@ class UserProfilController extends Controller
     public function UserVisi(){
         $visimisi = Visimisi::all();
         $kontak = Kontak::all();
-        return view ("profil.visimisi", compact('visimisi', 'kontak')); 
+        return view ("profil.visimisi", compact('visimisi', 'kontak'));
     }
 
     public function UserStruktur(){
         $struktur = Struktur::all();
         $kontak = Kontak::all();
-        return view ("profil.struktur", compact('struktur', 'kontak')); 
+        return view ("profil.struktur", compact('struktur', 'kontak'));
     }
 
     public function UserSejarah(){
         $sejarah = Sejarah::all();
         $kontak = Kontak::all();
-        return view ("profil.sejarah", compact('sejarah', 'kontak')); 
+        return view ("profil.sejarah", compact('sejarah', 'kontak'));
+    }
+
+     public function UserFasilitas(){
+        $fasilitas = Fasilitas::all();
+        $kontak = Kontak::all();
+        return view ("profil.fasilitas", compact('fasilitas', 'kontak'));
     }
 
     public function UserPengajuan(){
         $pengajuan = Pengajuan::all();
         $program = Program::all();
         $kontak = Kontak::all();
-        return view ("form.pengajuan", compact('pengajuan', 'kontak', 'program')); 
+        return view ("form.pengajuan", compact('pengajuan', 'kontak', 'program'));
     }
 
     public function UserDonasiJemput(){
         $jemput = Jemput::all();
         $program = Program::all();
         $kontak = Kontak::all();
-        return view ("form.jemput", compact('jemput', 'kontak', 'program')); 
+        return view ("form.jemput", compact('jemput', 'kontak', 'program'));
     }
 
     public function UserGaleri(){
         $galeri = Galeri::all();
         $kontak = Kontak::all();
-        return view ("galeri.galeri", compact('galeri', 'kontak')); 
+        return view ("galeri.galeri", compact('galeri', 'kontak'));
     }
 
     // show form halaman depan
@@ -74,7 +81,7 @@ class UserProfilController extends Controller
     $userpengajuan->nama_lengkap = $request->nama_lengkap;
     $userpengajuan->no_telp = $request->no_telp;
     $userpengajuan->desc_pengajuan = $request->desc_pengajuan;
-    
+
     if ($request->hasFile('foto1')) {
         $file1 = $request->file('foto1');
         $filename1 = time() . '_1.' . $file1->getClientOriginalExtension();
@@ -96,7 +103,7 @@ class UserProfilController extends Controller
             return back()->with('failed', 'Gagal mengupload foto2. Harap pilih gambar yang valid.');
         }
     }
-    
+
     // Default status diisi dengan null
     $userpengajuan->status = $request->status ?? 'Status';
 
@@ -127,7 +134,7 @@ public function submitDonasiJemputForm(Request $request)
     $userdonasijemput->nama_donatur = $request->nama_donatur;
     $userdonasijemput->no_hp = $request->no_hp;
     $userdonasijemput->barang_donasi = $request->barang_donasi;
-    
+
     if ($request->hasFile('foto_pengambilan')) {
         $file = $request->file('foto_pengambilan');
         $filename = time() . '.' . $file->getClientOriginalExtension();
@@ -138,7 +145,7 @@ public function submitDonasiJemputForm(Request $request)
             return back()->with('failed', 'Gagal mengupload foto pengambilan. Harap pilih gambar yang valid.');
         }
     }
-    
+
     // Default status diisi dengan null
     $userdonasijemput->foto_penyerahan = '';
     $userdonasijemput->status = $request->status ?? 'Status';

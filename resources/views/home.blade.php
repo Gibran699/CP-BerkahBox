@@ -9,23 +9,21 @@
 <section id="border">
     <div class="container">
         <div class="row justify-content-center">
-            {{-- Ganti Donasi Terkumpul dengan Jadwal Sholat --}}
-            <div class="col-12 col-sm-6 col-md-4">
+            <div class="col-12 col-sm-4 mb-4">
                 <div class="border-item text-center shadow rounded">
                     <img src="../icon/man_14788065.png" alt="Jadwal Sholat">
                     <h5>Jadwal Sholat <span style="font-weight: bold; color: #fd7e14;">{{ $sholatBerikutnya['nama'] }}</span></h5>
                     <p>{{ $sholatBerikutnya['jam'] }} WITA</p>
                 </div>
             </div>
-            {{-- Tetap --}}
-            <div class="col-12 col-sm-6 col-md-4">
+            <div class="col-12 col-sm-4 mb-4">
                 <div class="border-item text-center shadow rounded">
                     <img src="../icon/ikon2.png" alt="Pengajuan Donasi">
                     <h5>Pengajuan Donasi</h5>
                     <p>{{ $jumlahPengajuan }}</p>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-md-4">
+            <div class="col-12 col-sm-4 mb-4">
                 <div class="border-item text-center shadow rounded">
                     <img src="../icon/ikon3.png" alt="Jumlah Donatur">
                     <h5>Jumlah Donatur</h5>
@@ -35,6 +33,7 @@
         </div>
     </div>
 </section>
+
 
 
 {{-- border --}}

@@ -26,6 +26,69 @@ body {
     color: #d87300;
     font-size: 28px;
 }
+/* Custom CSS for Fasilitas Cards */
+.fasilitas-card {
+    border: 3px solid #d87300; /* Orange border color around the entire card */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Default shadow */
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer; /* Make the card clickable */
+}
+
+.fasilitas-card:hover {
+    box-shadow: 0 6px 12px rgba(216, 115, 0, 0.5); /* Orange shadow on hover */
+    transform: translateY(-5px); /* Add lift effect on hover */
+    border-color: #d87300; /* Ensure the border stays orange on hover */
+}
+
+/* Change text color of the description on click */
+.fasilitas-card.clicked .card-text {
+    color: #d87300; /* Change the text color to orange when clicked */
+}
+
+.fasilitas-card img {
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
+}
+
+.card-body {
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+/* Change background color on hover */
+.fasilitas-card:hover .card-body {
+    background-color: rgba(216, 115, 0, 0.1); /* Light orange background on hover */
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #555;
+    text-align: justify;
+    transition: color 0.3s ease; /* Add smooth color transition */
+}
+
+/* Make the section title stand out */
+#fasilitas .sub-judul {
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Adjust margins for small screens */
+@media (max-width: 768px) {
+    .fasilitas-card {
+        margin-bottom: 30px;
+    }
+}
 
 /* button */
 .btn-success {
@@ -35,6 +98,18 @@ body {
     padding: 8px 25px;
     color: white;
 }
+
+.btn-custom {
+    background-color: #d87300;
+    border-color: #d87300;
+    color: white;
+}
+
+.btn-custom:hover {
+    background-color: #b46200;
+    border-color: #b46200;
+}
+
 .btn-success:hover {
     background-color: #d87300;
     border-color: #d87300;
@@ -72,6 +147,17 @@ body {
 .btn-outline-success:hover {
     background-color: #ffb52a;
     color: #fff;
+}
+
+.btn-success {
+    --bs-btn-active-bg: #ffc107; 
+    --bs-btn-active-border-color: #e0a800; 
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2); 
+}
+
+.btn-success {
+    --bs-btn-hover-bg: #ffcc00;
+    --bs-btn-hover-border-color: #ffb300;
 }
 
 /* Navbar */
@@ -135,8 +221,8 @@ body {
 }
 
 .border-item:hover {
-    background-color: #d8ffe1;
-    border-color: #004803;
+    background-color: #fffeed;
+    /* border-color: #ebf396; */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
 }
@@ -230,6 +316,37 @@ body {
     color: #000;
     font-size: 15px;
     text-align: justify;
+}
+
+/* Custom CSS for Poster */
+.poster-card {
+    max-width: 500px;  /* Set max width for the card */
+    margin: 0 auto;  /* Center the card */
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.poster-card img {
+    width: 100%;
+    object-fit: contain;
+}
+
+/* Adjusting margins for navbar visibility */
+.donasi-section {
+    margin-top: 120px; /* Ensure space for navbar */
+}
+
+/* Card Styling for Donation Programs */
+.card {
+    border-radius: 15px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: none;
+}
+
+.btn-outline-secondary {
+    border-radius: 20px;
 }
 
 /* Footer */
@@ -331,6 +448,24 @@ body {
         height: auto;
         max-height: 250px;
     }
+    /* CSS untuk Logo Bank */
+.logo-bank {
+    width: 60px;             /* Tentukan lebar gambar logo */
+    height: 60px;            /* Tentukan tinggi gambar logo */
+    object-fit: contain;     /* Agar gambar tetap proporsional dan tidak terdistorsi */
+    margin-bottom: 15px;     /* Memberikan jarak antara gambar dan teks */
+}
+
+/* Optional: Pembungkus untuk memastikan logo berada di tengah */
+.logo-bank-wrapper {
+    display: flex;
+    justify-content: center; /* Untuk memastikan logo berada di tengah */
+    align-items: center;     /* Untuk memastikan logo terpusat secara vertikal */
+    padding: 10px;           /* Memberikan ruang sekitar logo */
+}
+
+    }
+
 
     .card-body {
         padding-top: 10px;
@@ -353,10 +488,10 @@ body {
         margin-top: -30px;
     }
 
-    #border .row {
+    /* #border .row {
         grid-template-columns: repeat(3, 1fr);
         gap: 3px;
-    }
+    } */
 
     .border-item {
         padding: 8px;
@@ -365,9 +500,25 @@ body {
     .border-item img {
         height: 50px;
     }
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #25d366;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
+  z-index: 1000;
 }
 
-.judul-visi {
-    color: #fd7e14;
-    font-weight: bold;
+.whatsapp-button:hover {
+  transform: scale(1.1);
 }
