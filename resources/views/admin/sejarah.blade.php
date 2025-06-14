@@ -37,6 +37,7 @@
                         <th>No</th>
                         <th>Sejarah Paragraf 1</th>
                         <th>Perjalanan Awal</th>
+                        <th>Gambar</th>
                         <th>Awal Pendirian</th>
                         <th>Perkembangan</th>
                         <th>Masa Kini</th>
@@ -51,6 +52,15 @@
                             <td scope="row">{{ $no++ }}</td>
                             <td>{{ $sejarah->tekssejarah }}</td>
                             <td>{{ $sejarah->perjalananAwal }}</td>
+
+                            <td class="text-center">
+                                @if($sejarah->gambarSejarah)
+                                    <img src="{{ asset($sejarah->gambarSejarah) }}" alt="Gambar" width="100">
+                                @else
+                                    <span class="text-muted">Belum ada</span>
+                                @endif
+                            </td>
+
                             <td>{{ $sejarah->awalPendirian }}</td>
                             <td>{{ $sejarah->perkembangan }}</td>
                             <td>{{ $sejarah->masaKini }}</td>

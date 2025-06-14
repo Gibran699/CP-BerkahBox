@@ -20,7 +20,7 @@
 
             @if (Session::get('failed'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Gagal!</strong> {{ Session::get('success') }}
+                    <strong>Gagal!</strong> {{ Session::get('failed') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -37,32 +37,37 @@
                             @csrf
                             <div class="form-group mt-1">
                                 <label class="text-secondary mb-2">Sejarah Paragraf 1</label>
-                                <textarea class="form-control" name="tekssejarah" style="height: 250px" required value="{{ old('tekssejarah') }}"></textarea>
+                                <textarea class="form-control" name="tekssejarah" style="height: 250px" required>{{ old('tekssejarah') }}</textarea>
                             </div>
                             <br>
                             <div class="form-group mt-1">
                                 <label class="text-secondary mb-2">Perjalanan Awal</label>
-                                <textarea class="form-control" name="perjalananAwal" style="height: 250px" required value="{{ old('tekssejarah2') }}"></textarea>
+                                <textarea class="form-control" name="perjalananAwal" style="height: 250px" required>{{ old('perjalananAwal') }}</textarea>
+                            </div>
+                            <br>
+                            <div class="form-group mt-1">
+                                <label class="text-secondary mb-2">Upload Gambar Perjalanan Awal</label>
+                                <input type="file" name="gambarSejarah" class="form-control" accept="image/*" required>
                             </div>
                             <br>
                             <div class="form-group mt-1">
                                 <label class="text-secondary mb-2">Awal Pendirian</label>
-                                <textarea class="form-control" name="awalPendirian" style="height: 250px" required value="{{ old('tekssejarah3') }}"></textarea>
+                                <textarea class="form-control" name="awalPendirian" style="height: 250px" required>{{ old('awalPendirian') }}</textarea>
                             </div>
                             <br>
                             <div class="form-group mt-1">
                                 <label class="text-secondary mb-2">Perkembangan</label>
-                                <textarea class="form-control" name="perkembangan" style="height: 250px" required value="{{ old('tekssejarah4') }}"></textarea>
+                                <textarea class="form-control" name="perkembangan" style="height: 250px" required>{{ old('perkembangan') }}</textarea>
                             </div>
                             <br>
                             <div class="form-group mt-1">
                                 <label class="text-secondary mb-2">Masa Kini</label>
-                                <textarea class="form-control" name="masaKini" style="height: 250px" required value="{{ old('tekssejarah4') }}"></textarea>
+                                <textarea class="form-control" name="masaKini" style="height: 250px" required>{{ old('masaKini') }}</textarea>
                             </div>
                             <br>
                             <div class="form-group mt-1">
                                 <label class="text-secondary mb-2">Sejarah Paragraf 2 (Akhir)</label>
-                                <textarea class="form-control" name="tekssejarah2" style="height: 250px" required value="{{ old('tekssejarah4') }}"></textarea>
+                                <textarea class="form-control" name="tekssejarah2" style="height: 250px" required>{{ old('tekssejarah2') }}</textarea>
                             </div>
 
                             <button type="submit" class="btn btn-success mt-5">Tambah</button>

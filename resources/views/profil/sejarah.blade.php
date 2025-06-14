@@ -8,6 +8,7 @@
     <section id="sejarah" class="py-5">
         <div class="container py-5">
             @foreach ($sejarah as $item)
+            {{-- @dd($item->gambarSejarah); --}}
             <div class="sejarah-header">
                 <div class="row">
                     <div class="col-lg-12">
@@ -21,13 +22,21 @@
                 </div>
             </div>
             
-            <div class="row my-5">
-                {{-- <div class="col-md-6 mb-4 mb-md-0">
-                    <img src="{{ asset('images/galeri3.jpg') }}" alt="Masjid Berkah Box" class="img-fluid sejarah-image" onerror="this.src='{{ asset('images/placeholder.jpg') }}'">
-                </div> --}}
+            <div class="row my-5 align-items-center">
                 <div class="col-md-6">
                     <h3 class="mb-4">Perjalanan Awal Kami</h3>
                     <p style="text-align: justify; line-height: 1.8;">{{ $item->perjalananAwal }}</p>
+                </div>
+                <div class="col-md-6 text-center">
+                    @if($item->gambarSejarah)
+                        <img src="{{ asset($item->gambarSejarah) }}" 
+                            alt="Perjalanan Awal Kami" 
+                            class="img-fluid fixed-image">
+                    @else
+                        <img src="{{ asset('images/placeholder.jpg') }}" 
+                            alt="Gambar tidak tersedia" 
+                            class="img-fluid fixed-image">
+                    @endif
                 </div>
             </div>
             

@@ -18,6 +18,7 @@ class Sejarah extends Model
         'id',
         'tekssejarah',
         'perjalananAwal',
+        'gambarSejarah',
         'awalPendirian',
         'perkembangan',
         'masaKini',

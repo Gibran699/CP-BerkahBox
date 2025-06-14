@@ -242,6 +242,23 @@ body {
     margin-bottom: 10px;
 }
 
+/* Sejarah */
+.fixed-image {
+    width: 100%;
+    max-width: 500px; 
+    height: 300px;    
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+table img {
+    border-radius: 5px;
+    object-fit: cover;
+    height: 70px;
+    width: 100px;
+}
+
+
 /* Ajukan Donasi */
 #ajukandonasi {
     padding: 50px 15px;

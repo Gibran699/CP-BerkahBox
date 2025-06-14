@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('id')->references('id')->on('users')->onDelete('restrict');
             $table->longText('tekssejarah');
             $table->longText('perjalananAwal');
+            $table->string('gambarSejarah')->nullable();
             $table->longText('awalPendirian');
             $table->longText('perkembangan');
             $table->longText('masaKini');

@@ -38,37 +38,53 @@ class ProfilController extends Controller
         return view('admin.tambahsejarah');
     }
 
-    public function postTambahSejarah(Request $request) {
+    public function postTambahSejarah(Request $request)
+    {
+        // Cek jika data sejarah sudah ada
+        if (Sejarah::count() > 0) {
+            return redirect()->back()->with('failed', 'Data sejarah sudah ada, tidak bisa menambahkan lagi. Silakan edit data sejarah yang sudah ada.');
+        }
+
+        // Validasi
         $request->validate([
             'tekssejarah' => 'required',
             'perjalananAwal' => 'required',
+            'gambarSejarah' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'awalPendirian' => 'required',
             'perkembangan' => 'required',
             'masaKini' => 'required',
             'tekssejarah2' => 'required',
         ]);
 
-        $sejarah = new Sejarah;
-        $sejarah->id = Auth::id();
-
-        $sejarah ->tekssejarah  = $request->tekssejarah;
-        $sejarah ->perjalananAwal  = $request->perjalananAwal;
-        $sejarah ->awalPendirian  = $request->awalPendirian;
-        $sejarah ->perkembangan  = $request->perkembangan;
-        $sejarah ->masaKini  = $request->masaKini;
-        $sejarah ->tekssejarah2  = $request->tekssejarah2;
-        $sejarah ->save();
-
-        if($sejarah ) {
-            return back()->with('success', 'Sejarah Yayasan Berhasil ditambahkan!');
-        } else {
-            return back()->with('failed', 'Gagal Menambahkan Sejarah Yayasan!');
+        // Simpan gambar
+        $gambarPath = null;
+        if ($request->hasFile('gambarSejarah')) {
+            $file = $request->file('gambarSejarah');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/sejarah'), $filename);
+            $gambarPath = 'uploads/sejarah/' . $filename;
         }
+
+        // Simpan data sejarah
+        Sejarah::create([
+            'tekssejarah' => $request->tekssejarah,
+            'perjalananAwal' => $request->perjalananAwal,
+            'gambarSejarah' => $gambarPath,
+            'awalPendirian' => $request->awalPendirian,
+            'perkembangan' => $request->perkembangan,
+            'masaKini' => $request->masaKini,
+            'tekssejarah2' => $request->tekssejarah2,
+        ]);
+
+        return redirect()->route('admin.sejarah')->with('success', 'Data sejarah berhasil ditambahkan.');
     }
+
     public function editSejarah($id) {
-        $data = Sejarah::find($id);
-        return view('admin/editsejarah', compact('data'));
+        $data = Sejarah::findOrFail($id);
+        // dd($data);
+        return view('admin.editsejarah', compact('data'));
     }
+
     public function postEditSejarah(Request $request, $id) {
         $request->validate([
             'tekssejarah' => 'required',
@@ -77,23 +93,29 @@ class ProfilController extends Controller
             'perkembangan' => 'required',
             'masaKini' => 'required',
             'tekssejarah2' => 'required',
+            'gambarSejarah' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $sejarah = Sejarah::find($id);
+        $sejarah = Sejarah::findOrFail($id);
 
-        $sejarah ->tekssejarah  = $request->tekssejarah;
-        $sejarah ->perjalananAwal  = $request->perjalananAwal;
-        $sejarah ->awalPendirian  = $request->awalPendirian;
-        $sejarah ->perkembangan  = $request->perkembangan;
-        $sejarah ->masaKini  = $request->masaKini;
-        $sejarah ->tekssejarah2  = $request->tekssejarah2;
-        $sejarah ->save();
-
-        if($sejarah){
-            return back()->with('success', 'sejarah berhasil di update!');
-        } else {
-            return back()->with('failed', 'Gagal mengupdate sejarah!');
+        // Update gambar jika ada
+        if ($request->hasFile('gambarSejarah')) {
+            $file = $request->file('gambarSejarah');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/sejarah'), $filename);
+            $sejarah->gambarSejarah = 'uploads/sejarah/' . $filename;
         }
+
+        // Update field lainnya
+        $sejarah->tekssejarah = $request->tekssejarah;
+        $sejarah->perjalananAwal = $request->perjalananAwal;
+        $sejarah->awalPendirian = $request->awalPendirian;
+        $sejarah->perkembangan = $request->perkembangan;
+        $sejarah->masaKini = $request->masaKini;
+        $sejarah->tekssejarah2 = $request->tekssejarah2;
+        $sejarah->save();
+
+        return back()->with('success', 'Sejarah berhasil diupdate!');
     }
 
     public function deleteSejarah($id_sejarah){
