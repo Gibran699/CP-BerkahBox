@@ -9,7 +9,7 @@ use App\Models\Pengajuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\UserController;
+// use App\Http\Controllers\UserController;
 
 class UserController extends Controller
 {

@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Donasi;
 use App\Models\Program;
+use App\Models\DonasiForm;
 use Midtrans\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 // use App\Http\Controllers\AdminController;
 
 
@@ -193,122 +195,116 @@ class AdminController extends Controller
 
     //ini donasi
 
-public function adminDonasi(Request $request, $show_hidden = false)
-{
-    $search = $request->input('search');
-    $query = Donasi::query();
+    // donasi form
+    public function adminDonasi(Request $request)
+    {
+        $search = $request->input('search');
 
-    $data = $query->when($search, function ($query) use ($search) {
-        $query->where('nama_donatur', 'LIKE', '%' . $search . '%');
-    })->paginate(10);
+        $data = DonasiForm::when($search, function ($query) use ($search) {
+            $query->where('nama_lengkap', 'like', '%' . $search . '%')
+                ->orWhere('no_telp', 'like', '%' . $search . '%')
+                ->orWhere('nominal', 'like', '%' . $search . '%');
+        })->paginate(10);
 
-    foreach ($data as $donasi) {
-        try {
-            $status = Transaction::status($donasi->order_id);
-            $transactionStatus = $status->transaction_status;
+        return view('admin.donasi', compact('data'));
+    }
 
-            // Update status berdasarkan transaksi di Midtrans
-            if (in_array($transactionStatus, ['capture', 'settlement'])) {
-                $donasi->status = 'success';
-            } elseif ($transactionStatus === 'pending') {
-                $donasi->status = 'pending';
-            } elseif (in_array($transactionStatus, ['deny', 'expire', 'cancel'])) {
-                $donasi->status = 'cancel';
-            } elseif ($transactionStatus === 'failure' || $status->fraud_status === 'challenge') {
-                $donasi->status = 'failed';
+    public function tambahDonasi()
+    {
+        return view('admin.tambahdonasi');
+    }
+
+    public function postTambahDonasi(Request $request)
+    {
+        $request->validate([
+            'nama_lengkap' => 'required|string|max:255',
+            'no_telp' => 'required|string|max:20',
+            'nominal' => 'required|numeric|min:1',
+            'bukti_transfer' => 'nullable|image|max:2048',
+        ]);
+
+        $donasi = new DonasiForm();
+        $donasi->nama_lengkap = $request->nama_lengkap;
+        $donasi->no_telp = $request->no_telp;
+        $donasi->nominal = $request->nominal;
+
+        if ($request->hasFile('bukti_transfer')) {
+            $file = $request->file('bukti_transfer');
+
+            if (!File::exists(public_path('bukti_transfer'))) {
+                File::makeDirectory(public_path('bukti_transfer'), 0755, true);
             }
 
-            $donasi->save();
-        } catch (\Exception $e) {
-            Log::error("Error syncing status for order_id {$donasi->order_id}: " . $e->getMessage());
+            $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
+            $destination = public_path('bukti_transfer');
+
+            $moved = $file->move($destination, $filename);
+
+            if ($moved) {
+                $donasi->bukti_transfer = 'bukti_transfer/' . $filename;
+            } else {
+                dd('Gagal memindahkan file!');
+            }
         }
+
+        $donasi->save();
+
+        return redirect()->route('admin.donasi')->with('success', 'Donasi berhasil ditambahkan!');
     }
 
-    return view('admin.donasi', compact('data', 'show_hidden'));
-}
-
-
-    public function tambahDonasi() {
-            $programs = Program::all();
-
-            return view('admin.tambahdonasi', compact('programs'));
-        
+    public function editDonasi($id)
+    {
+        $data = DonasiForm::findOrFail($id);
+        return view('admin.editdonasi', compact('data'));
     }
 
-    public function postTambahDonasi(Request $request) {
+    public function postEditDonasi(Request $request, $id)
+    {
         $request->validate([
-            'id_program_donasi' => 'required|exists:program_donasi,id_program_donasi',
-            'nama_donatur'=> 'required|string|max:255',
-            'no_telp'=> 'required|string|max:15',
-            'email'=> 'required|email',
-            'nominal' => 'required',
-            'status' => ['required', 'in:success,pending,failed'],
-
+            'nama_lengkap' => 'required|string|max:255',
+            'no_telp' => 'required|string|max:20',
+            'nominal' => 'required|numeric|min:1',
+            'bukti_transfer' => 'nullable|image|max:2048',
         ]);
 
-        $donasii = new Donasi;
-        $donasii->id = Auth::id();
-        $donasii ->id_program_donasi = $request->id_program_donasi;
-        $donasii ->nama_donatur = $request->nama_donatur;
-        $donasii ->no_telp = $request->no_telp;
-        $donasii ->email = $request->email;
-        $donasii ->nominal = $request->nominal;
-        
-        $donasii ->status = $request->status;
+        $donasi = DonasiForm::findOrFail($id);
+        $donasi->nama_lengkap = $request->nama_lengkap;
+        $donasi->no_telp = $request->no_telp;
+        $donasi->nominal = $request->nominal;
 
-        $donasii->save();
-        
-        if($donasii ) {
-            return back()->with('success', 'Donasi Berhasil ditambahkan!'); 
-        } else {
-            return back()->with('failed', 'Gagal Menambahkan Donasi!');
+        if ($request->hasFile('bukti_transfer')) {
+            // hapus bukti lama jika ada
+            if ($donasi->bukti_transfer && File::exists(public_path($donasi->bukti_transfer))) {
+                File::delete(public_path($donasi->bukti_transfer));
+            }
+
+            $file = $request->file('bukti_transfer');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('bukti_transfer'), $filename);
+            $donasi->bukti_transfer = 'bukti_transfer/' . $filename;
         }
+
+        $donasi->save();
+
+        return redirect()->route('admin.donasi')->with('success', 'Donasi berhasil diupdate!');
     }
 
-    public function editDonasi($id_donasi_pembayaran) {
-            $data = Donasi::find($id_donasi_pembayaran);
-            $programs = Program::all();
-        
-            return view('admin.editdonasi', compact('data', 'programs'));
-        }  
+    public function deleteDonasi($id)
+    {
+        $donasi = DonasiForm::find($id);
 
-    public function postEditDonasi(Request $request, $id_donasi_pembayaran) {
-        $request->validate([
-            'nama_donatur'=> 'required|string|max:255',
-            'no_telp'=> 'required|string|max:15',
-            'email'=> 'required|email',
-            'nominal' => 'required',
-            'status' => ['required', 'in:success,pending,failed'],
-            'id_program_donasi' => 'required|exists:program_donasi,id_program_donasi',
-        ]);
-        
-        $donasii = Donasi::findOrFail($id_donasi_pembayaran);
-        $donasii ->id_program_donasi = $request->id_program_donasi;
-        $donasii ->nama_donatur = $request->nama_donatur;
-        $donasii ->no_telp = $request->no_telp;
-        $donasii ->email = $request->email;
-        $donasii ->nominal = $request->nominal;
-        $donasii->status = $request->status;
-
-        $donasii->save();
-        
-        if($donasii){
-            return back()->with('success', 'Donasi berhasil di update!'); 
-        } else {
-            return back()->with('failed', 'Gagal mengupdate Donasi!');
+        if (!$donasi) {
+            return back()->with('failed', 'Data donasi tidak ditemukan.');
         }
-    }
-    
 
-    public function deleteDonasi($id_donasi_pembayaran) {
-        $donasii = Donasi::find($id_donasi_pembayaran);
-        $donasii->delete();
-
-        if ($donasii) {
-            return back()->with('success', 'Data Donasi berhasil dihapus!');
-        } else {
-            return back()->with('failed', 'Gagal menghapus data Donasi!');
+        // Hapus file bukti_transfer jika ada
+        if ($donasi->bukti_transfer && File::exists(public_path($donasi->bukti_transfer))) {
+            File::delete(public_path($donasi->bukti_transfer));
         }
+
+        $donasi->delete();
+
+        return back()->with('success', 'Data donasi berhasil dihapus.');
     }
 
     // data donatur

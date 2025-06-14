@@ -13,6 +13,7 @@ use App\Http\Controllers\UserProfilController;
 use pp\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\DonasiFormController;
 use App\Http\Controllers\StrukturGambarController;
+use App\Http\Controllers\HomepageImageController;
 
 use Illuminate\Support\Facades\Artisan;
 
@@ -27,10 +28,6 @@ use Illuminate\Support\Facades\Artisan;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('home');
-})->name('home');
 
 Route::get('/', [UserHomeController::class, 'UserHome'])->name('home');
 
@@ -92,7 +89,7 @@ Route::group(['middleware' => ['auth', 'admin']], function ()
 {
     // login
     Route::get('/admin/admin', [LoginController::class,'adminHome'])->name('admin.admin');
-
+    
     // program
     Route::get('/admin/program_donasi', [AdminController::class, 'adminProgram'])->name('admin.program_donasi');
     Route::get('/admin/tambahprogram_donasi', [AdminController::class, 'tambahProgram'])->name('admin.tambahprogram_donasi');
@@ -106,13 +103,13 @@ Route::group(['middleware' => ['auth', 'admin']], function ()
     Route::get('/admin/deletedonasi/{id_donasi_pembayaran}', [AdminController::class, 'deleteDonasi'])->name('admin.deletedonasi');
     Route::get('/admin/laporan-donasi', [DonasiController::class, 'laporanDonasi'])->name('admin.laporan_donasi');
 
-    Route::get('/admin/laporan_pengeluaran', [PengeluaranController::class, 'laporanPengeluaran'])->name('admin.laporan_pengeluaran');
-    Route::get('/admin/laporan_pengeluaran/cetak', [PengeluaranController::class, 'cetakLaporanPengeluaran'])->name('admin.laporan_pengeluaran_pdf');
-    Route::get('/laporan_pengeluaran/tambah', [PengeluaranController::class, 'tambahPengeluaran'])->name('admin.tambah_pengeluaran');
-    Route::post('/laporan_pengeluaran/tambah', [PengeluaranController::class, 'store'])->name('admin.postTambahPengeluaran');
-    Route::get('/laporan_pengeluaran/edit/{id}', [PengeluaranController::class, 'editPengeluaran'])->name('admin.edit_pengeluaran');
-    Route::post('/laporan_pengeluaran/update/{id}', [PengeluaranController::class, 'update'])->name('admin.postEditPengeluaran');
-    Route::delete('/admin/laporan_pengeluaran/delete/{id}', [PengeluaranController::class, 'deletePengeluaran'])->name('admin.deletePengeluaran');
+    // Route::get('/admin/laporan_pengeluaran', [PengeluaranController::class, 'laporanPengeluaran'])->name('admin.laporan_pengeluaran');
+    // Route::get('/admin/laporan_pengeluaran/cetak', [PengeluaranController::class, 'cetakLaporanPengeluaran'])->name('admin.laporan_pengeluaran_pdf');
+    // Route::get('/laporan_pengeluaran/tambah', [PengeluaranController::class, 'tambahPengeluaran'])->name('admin.tambah_pengeluaran');
+    // Route::post('/laporan_pengeluaran/tambah', [PengeluaranController::class, 'store'])->name('admin.postTambahPengeluaran');
+    // Route::get('/laporan_pengeluaran/edit/{id}', [PengeluaranController::class, 'editPengeluaran'])->name('admin.edit_pengeluaran');
+    // Route::post('/laporan_pengeluaran/update/{id}', [PengeluaranController::class, 'update'])->name('admin.postEditPengeluaran');
+    // Route::delete('/admin/laporan_pengeluaran/delete/{id}', [PengeluaranController::class, 'deletePengeluaran'])->name('admin.deletePengeluaran');
 
     // donatur
     Route::get('/admin/user/donatur', [AdminController::class, 'dataDonatur'])->name('admin.donatur');
@@ -181,7 +178,7 @@ Route::post('/postEditProgram/{id_program_donasi}', [AdminController::class, 'po
 
 // donasi POST
 Route::post('/postTambahDonasi', [AdminController::class, 'postTambahDonasi'])->name('postTambahDonasi');
-Route::post('/postEditDonasi/{id_donasi_pembayaran}', [AdminController::class, 'postEditDonasi'])->name('postEditDonasi');
+Route::post('/postEditDonasi/{id}', [AdminController::class, 'postEditDonasi'])->name('postEditDonasi');
 
 
 

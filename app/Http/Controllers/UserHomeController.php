@@ -7,6 +7,7 @@ use App\Models\Kontak;
 use App\Models\Program;
 use App\Models\Sejarah;
 use App\Models\Pengajuan;
+use App\Models\DonasiForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User;
@@ -23,7 +24,7 @@ class UserHomeController extends Controller
 
         $jumlahDonasiDiterima = Donasi::where('status', 'success')->sum('nominal');
         $jumlahPengajuan = Pengajuan::where('status', 'Diterima')->count();
-        $jumlahDonatur = User::where('role', 'user')->count();
+        $jumlahDonasi = DonasiForm::count();
 
         $galeriuser = Galeri::take(10)->get();
         $kontak = Kontak::all();
@@ -90,7 +91,7 @@ class UserHomeController extends Controller
         // Kirim variabel ke view
         return view("home", compact(
             'user', 'program', 'galeriuser', 'kontak', 'sejarahuser',
-            'jumlahDonasiDiterima', 'jumlahDonatur', 'jumlahPengajuan',
+            'jumlahDonasiDiterima', 'jumlahDonasi', 'jumlahPengajuan',
             'sholatBerikutnya'
         ));
     }

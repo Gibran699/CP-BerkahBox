@@ -34,12 +34,12 @@
         <button type="submit" class="btn btn-lg w-100">LOGIN</button>
     </form>
 
-    <div class="text-center mt-3">
+    {{-- <div class="text-center mt-3">
         <a class="text-decoration-none text-danger" href="{{ route('password.request') }}">Lupa Sandi?</a>
     </div>
     <div class="text-center mt-3">
         <p>Belum punya akun? <a class="text-decoration-none" href="{{ route('auth.register') }}">Daftar di sini</a></p>
-    </div>
+    </div> --}}
     <div class="text-center mt-3">
         <a href="{{ route('home') }}" class="text-decoration-none btn-link">Kembali</a>
     </div>

@@ -50,7 +50,7 @@ class ProfilController extends Controller
         $request->validate([
             'tekssejarah' => 'required',
             'perjalananAwal' => 'required',
-            'gambarSejarah' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'gambarSejarah' => 'required|image|mimes:jpeg,png,jpg|max:5120',
             'awalPendirian' => 'required',
             'perkembangan' => 'required',
             'masaKini' => 'required',
@@ -94,7 +94,7 @@ class ProfilController extends Controller
             'perkembangan' => 'required',
             'masaKini' => 'required',
             'tekssejarah2' => 'required',
-            'gambarSejarah' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'gambarSejarah' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
         ]);
 
         $sejarah = Sejarah::findOrFail($id);

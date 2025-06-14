@@ -12,7 +12,7 @@
             <!-- Kolom Gambar -->
             <div class="col-md-6">
                 <div class="card poster-card" style="padding: 15px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                    <img src="{{ asset('donasi/donasi.png') }}" class="img-fluid" alt="Poster Donasi" style="width: 100%; object-fit: contain;">
+                    <img src="{{ asset('donasi/scanBarcode.jpg') }}" class="img-fluid" alt="Poster Donasi" style="width: 100%; object-fit: contain;">
                 </div>
             </div>
 

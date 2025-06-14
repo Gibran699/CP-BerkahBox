@@ -43,11 +43,11 @@
                 <span>Fasilitas</span></a>
         </li>
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.program_donasi') }}">
                 <i class="fas fa-hand-holding-heart"></i>
                 <span>Program Donasi</span></a>
-        </li>
+        </li> --}}
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.donasi') }}">
@@ -55,11 +55,11 @@
                 <span>Donasi</span></a>
         </li>
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.donatur') }}">
                 <i class="fas fa-users"></i>
                 <span>Donatur</span></a>
-        </li>
+        </li> --}}
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.galeri') }}">
@@ -67,11 +67,11 @@
                 <span>Galeri</span></a>
         </li>
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.pengajuan') }}">
                 <i class="fas fa-file-signature"></i>
                 <span>Pengajuan Donasi</span></a>
-        </li>
+        </li> --}}
 
         {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.donasi_jemput') }}">
@@ -79,17 +79,17 @@
                 <span>Jemput Donasi</span></a>
         </li> --}}
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.laporan_donasi') }}">
                 <i class="fas fa-file-alt"></i>
                 <span>Laporan Donasi</span></a>
-        </li>
-
+        </li> --}}
+{{-- 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.laporan_pengeluaran') }}">
                 <i class="fas fa-file-invoice-dollar"></i>
                 <span>Laporan Pengeluaran</span></a>
-        </li>
+        </li> --}}
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.kontak') }}">

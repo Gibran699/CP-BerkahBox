@@ -13,7 +13,7 @@
 </head>
 
 <body
-    style="background: linear-gradient(to bottom, #004803, #75de64); min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    style="background: linear-gradient(to bottom, #fbfbfb, #fae0b1); min-height: 100vh; display: flex; align-items: center; justify-content: center;">
 
     <section class="container-fluid px-3 justify-content-center align-items-center">
         <div class="login-card p-4">

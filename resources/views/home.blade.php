@@ -1,30 +1,51 @@
 @extends('layouts.layouts')
 {{-- Hero --}}
 <section id="hero" class="text-center text-white py-3"
-    style="background-image: url('../images/bg.jpeg'); background-size:100%; ">
+    style="background-image: url('../images/dashboard.JPG'); background-size:100%; ">
 </section>
 
 
 {{-- border --}}
 <section id="border">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-4 mb-4">
-                <div class="border-item text-center shadow rounded">
-                    <img src="../icon/man_14788065.png" alt="Jadwal Sholat">
-                    <h5>Jadwal Sholat <span style="font-weight: bold; color: #fd7e14;">{{ $sholatBerikutnya['nama'] }}</span></h5>
-                    <p>{{ $sholatBerikutnya['jam'] }} WITA</p>
-                </div>
+    <div class="row justify-content-center align-items-stretch">
+        <!-- Card Jadwal Sholat -->
+        <div class="col-12 col-sm-4 mb-4 d-flex">
+            <div class="border-item shadow rounded text-center p-3 w-100 d-flex flex-column justify-content-center">
+                <img src="../icon/man_14788065.png" alt="Jadwal Sholat"
+                    class="mb-3 mx-auto d-block"
+                    style="width: 60px; height: 60px; object-fit: contain;">
+                <h5>
+                    Jadwal Sholat
+                    <span style="font-weight: bold; color: #fd7e14;">{{ $sholatBerikutnya['nama'] }}</span>
+                </h5>
+                <p class="mb-0">{{ $sholatBerikutnya['jam'] }} WITA</p>
             </div>
-            <div class="col-12 col-sm-4 mb-4">
-                <div class="border-item text-center shadow rounded">
-                    <img src="../icon/ikon3.png" alt="Jumlah Donatur">
-                    <h5>Jumlah Donatur</h5>
-                    <p>{{ $jumlahDonatur }}</p>
-                </div>
+        </div>
+
+        <!-- Card Partisipasi Donasi -->
+        <div class="col-12 col-sm-4 mb-4 d-flex">
+            <div class="border-item shadow rounded text-center p-3 w-100 d-flex flex-column justify-content-center">
+                <img src="../icon/ikon3.png" alt="Jumlah Donatur"
+                    class="mb-3 mx-auto d-block"
+                    style="width: 60px; height: 60px; object-fit: contain;">
+                <h5>Partisipasi Donasi</h5>
+                <p class="mb-1">
+                    <span class="text-warning fw-bold" style="font-size: 1.25rem;">
+                        @if ($jumlahDonasi > 100)
+                            100+
+                        @else
+                            {{ $jumlahDonasi }}
+                        @endif
+                    </span>
+                </p>
+                <p class="mb-0" style="font-size: 0.95rem;">
+                    Aksi kebaikan tercatat di <strong>Berkah Box</strong>.
+                </p>
             </div>
         </div>
     </div>
+</div>
 </section>
 {{-- border --}}
 
@@ -59,7 +80,7 @@
             </div>
             <!-- Bagian Gambar -->
             <div class="col-lg-6 col-md-12 d-flex justify-content-center mt-4 mt-lg-0" data-aos="fade-left">
-                <img src="../images/ajukandonasi.jpg" class="img-banner" alt="Donasi">
+                <img src="../images/Makan.jpg" class="img-banner" alt="Donasi">
             </div>
         </div>
     </div>

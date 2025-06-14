@@ -9,6 +9,18 @@
         </a>
 
         <div class="container mt-3">
+            @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             @if (Session::get('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>Berhasil!</strong> {{ Session::get('success') }}
@@ -49,6 +61,9 @@
                             <div class="form-group mt-1">
                                 <label class="text-secondary mb-2">Gambar Perjalanan Awal (opsional)</label>
                                 <input type="file" name="gambarSejarah" class="form-control" accept="image/*">
+                                @error('gambarSejarah')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                                 @if ($data->gambarSejarah)
                                     <div class="mt-2">
                                         <p class="text-muted mb-1">Gambar saat ini:</p>

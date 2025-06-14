@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Donasi;
 use App\Models\Program;
 use App\Models\Pengajuan;
+use App\Models\DonasiForm;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -13,13 +14,15 @@ use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
+
     public function adminHome() {
         $user = auth()->user();
 
-        $jumlahDonasiDiterima = Donasi::where('status', 'success')->sum('nominal');
+        $jumlahDonasiDiterima = DonasiForm::sum('nominal');
         $jumlahPengajuan = Pengajuan::where('status', 'Diterima')->count();
-        $jumlahDonatur = User::where('role', 'user')->count();
-        return view('admin.admin', compact('jumlahDonasiDiterima', 'jumlahPengajuan', 'jumlahDonatur'));
+        $jumlahDonasi = DonasiForm::count(); 
+
+        return view('admin.admin', compact('jumlahDonasiDiterima', 'jumlahPengajuan', 'jumlahDonasi'));
     }
     
     public function postLogin(Request $request) {

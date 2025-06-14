@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use App\Models\DonasiForm;
 
 class DonasiFormController extends Controller
@@ -23,8 +25,21 @@ class DonasiFormController extends Controller
 
         // Simpan file jika ada
         if ($request->hasFile('bukti_transfer')) {
-            $path = $request->file('bukti_transfer')->store('bukti_transfer', 'public');
-            $validated['bukti_transfer'] = $path;
+            $file = $request->file('bukti_transfer');
+
+            // Buat folder jika belum ada
+            if (!File::exists(public_path('bukti_transfer'))) {
+                File::makeDirectory(public_path('bukti_transfer'), 0755, true);
+            }
+
+            // Buat nama file unik
+            $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
+
+            // Pindahkan file ke public/bukti_transfer
+            $file->move(public_path('bukti_transfer'), $filename);
+
+            // Simpan path relatif
+            $validated['bukti_transfer'] = 'bukti_transfer/' . $filename;
         }
 
         // Simpan ke DB

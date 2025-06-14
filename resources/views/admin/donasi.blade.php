@@ -14,7 +14,7 @@
         <!-- Formulir Pencarian -->
         <form action="{{ route('admin.donasi') }}" method="GET">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="..." name="search" value="{{ request('search') }}">
+                <input type="text" class="form-control" placeholder="Cari nama..." name="search" value="{{ request('search') }}">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit">Cari</button>
                 </div>
@@ -26,35 +26,33 @@
                 <thead class="table-primary text-center">
                     <tr>
                         <th>No</th>
-                        <th>Nama Donatur</th>
+                        <th>Nama Lengkap</th>
                         <th>No Telp</th>
-                        <th>Email</th>
                         <th>Nominal</th>
-                        <th>Nama Program</th>
-                        <th>Status</th>
+                        <th>Bukti Transfer</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
                     @php($no = $data->firstItem())
-                    @foreach ($data as $index => $donasi)
+                    @foreach ($data as $donasi)
                         <tr>
-                            <td scope="row">{{ $no++ }}</td>
-                            <td>{{ $donasi->nama_donatur }}</td>
+                            <td>{{ $no++ }}</td>
+                            <td>{{ $donasi->nama_lengkap }}</td>
                             <td>{{ $donasi->no_telp }}</td>
-                            <td>{{ $donasi->email }}</td>
                             <td>Rp {{ number_format($donasi->nominal, 0, ',', '.') }}</td>
-                            <td>{{ $donasi->program_donasi ? $donasi->program_donasi->nama_program : 'Program Tidak Ditemukan' }}
+                            <td>
+                                @if ($donasi->bukti_transfer)
+                                    <a href="{{ asset($donasi->bukti_transfer) }}" target="_blank" class="btn btn-sm btn-info">Lihat</a>
+                                @else
+                                    <span class="text-muted">Belum ada</span>
+                                @endif
                             </td>
-                            <td>{{ ucfirst($donasi->status) }}</td>
                             <td class="text-center">
-                                <!-- Ikon Edit -->
-                                <a href="/admin/editdonasi/{{ $donasi->id_donasi_pembayaran }}" class="text-warning mx-2">
+                                <a href="/admin/editdonasi/{{ $donasi->id }}" class="text-warning mx-2">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <!-- Ikon Delete -->
-                                <a href="#" onclick="confirmDelete({{ $donasi->id_donasi_pembayaran }})"
-                                    class="text-danger mx-2">
+                                <a href="#" onclick="confirmDelete({{ $donasi->id }})" class="text-danger mx-2">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
                             </td>
@@ -65,11 +63,11 @@
             {{ $data->links() }}
         </div>
     </div>
+
     <script>
-        function confirmDelete(id_donasi_pembayaran) {
-            var confirmation = confirm("Apakah Anda yakin ingin menghapus data ini?");
-            if (confirmation) {
-                window.location.href = "/admin/deletedonasi/" + id_donasi_pembayaran;
+        function confirmDelete(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+                window.location.href = "/admin/deletedonasi/" + id;
             }
         }
     </script>

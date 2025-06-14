@@ -4,7 +4,7 @@
 
 @section('contents')
     <div class="container">
-        <a href="{{ route('admin.tambahdonasi') }}">
+        <a href="{{ route('admin.donasi') }}">
             <i class="bi-arrow-left h1"></i>
         </a>
 
@@ -20,7 +20,7 @@
 
             @if (Session::get('failed'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Gagal!</strong> {{ Session::get('success') }}
+                    <strong>Gagal!</strong> {{ Session::get('failed') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -36,23 +36,23 @@
                         <form action="{{ route('postTambahDonasi') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
+                            <!-- Nama Lengkap -->
                             <div class="form-group mt-4">
-                                <label class="text-secondary mb-2">Nama Donatur</label>
-                                <input type="text" class="form-control border border-secondary form-control"
-                                    name="nama_donatur" required value="{{ old('nama_donatur') }}">
-
+                                <label class="text-secondary mb-2">Nama Lengkap</label>
+                                <input type="text" class="form-control border border-secondary" name="nama_lengkap" required
+                                    value="{{ old('nama_lengkap') }}">
                                 <span class="text-danger">
-                                    @error('nama_donatur')
+                                    @error('nama_lengkap')
                                         {{ $message }}
                                     @enderror
                                 </span>
                             </div>
 
+                            <!-- No Telp -->
                             <div class="form-group mt-4">
                                 <label class="text-secondary mb-2">No Telp</label>
-                                <input type="number" class="form-control border border-secondary form-control"
-                                    name="no_telp" required value="{{ old('no_telp') }}">
-
+                                <input type="text" class="form-control border border-secondary" name="no_telp" required
+                                    value="{{ old('no_telp') }}">
                                 <span class="text-danger">
                                     @error('no_telp')
                                         {{ $message }}
@@ -60,23 +60,11 @@
                                 </span>
                             </div>
 
-                            <div class="form-group mt-4">
-                                <label class="text-secondary mb-2">Email</label>
-                                <input type="email" class="form-control border border-secondary form-control"
-                                    name="email" required value="{{ old('email') }}">
-
-                                <span class="text-danger">
-                                    @error('email')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-
+                            <!-- Nominal -->
                             <div class="form-group mt-4">
                                 <label class="text-secondary mb-2">Nominal Donasi</label>
-                                <input type="number" class="form-control border border-secondary form-control"
-                                    name="nominal" required value="{{ old('nominal') }}">
-
+                                <input type="number" class="form-control border border-secondary" name="nominal" required
+                                    value="{{ old('nominal') }}">
                                 <span class="text-danger">
                                     @error('nominal')
                                         {{ $message }}
@@ -84,28 +72,16 @@
                                 </span>
                             </div>
 
+                            <!-- Bukti Transfer -->
                             <div class="form-group mt-4">
-                                <label class="text-secondary mb-2">Program Donasi</label>
-                                <select class="form-control" name="id_program_donasi" required>
-                                    @foreach ($programs as $item)
-                                        <option value="{{ $item->id_program_donasi }}">{{ $item->nama_program }}</option>
-                                    @endforeach
-                                </select>
+                                <label class="text-secondary mb-2">Bukti Transfer (Opsional)</label>
+                                <input type="file" class="form-control border border-secondary" name="bukti_transfer"
+                                    accept="image/*">
                                 <span class="text-danger">
-                                    @error('id_program_donasi')
+                                    @error('bukti_transfer')
                                         {{ $message }}
                                     @enderror
                                 </span>
-                            </div>
-
-                            <div class="form-group mt-1">
-                                <label class="text-secondary mb-2">Status</label>
-                                <select class="form-control" name="status" required>
-                                    <option value="success" style="background-color: green; color: white;">success
-                                    </option>
-                                    <option value="pending" style="background-color: yellow; color: black;">pending</option>
-                                    <option value="cancel" style="background-color: red; color: white;">cancel</option>
-                                </select>
                             </div>
 
                             <button type="submit" class="btn btn-success mt-5">Tambah Donasi</button>

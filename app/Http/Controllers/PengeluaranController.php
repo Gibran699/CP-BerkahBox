@@ -1,4 +1,4 @@
-<?php
+<!-- 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -167,4 +167,4 @@ public function cetakLaporanPengeluaran(Request $request)
     return redirect()->route('admin.laporan_pengeluaran')->with('success', 'Pengeluaran berhasil dihapus.');
     }
 
-}
+} -->
