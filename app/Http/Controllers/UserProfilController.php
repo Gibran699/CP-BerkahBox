@@ -33,7 +33,7 @@ class UserProfilController extends Controller
 
         return view('profil.struktur', compact('struktur', 'kontak', 'gambar'));
     }
-    
+
     public function UserSejarah(){
         $sejarah = Sejarah::all();
         $kontak = Kontak::all();
@@ -44,6 +44,12 @@ class UserProfilController extends Controller
         $fasilitas = Fasilitas::all();
         $kontak = Kontak::all();
         return view ("profil.fasilitas", compact('fasilitas', 'kontak'));
+    }
+
+    public function UserProgram(){
+        $program = Program::all();
+        $kontak = Kontak::all();
+        return view ("profil.program", compact('program', 'kontak'));
     }
 
     public function UserPengajuan(){

@@ -27,7 +27,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Program</th>
-                        <th>Tittle</th>
+                        {{-- <th>Tittle</th> --}}
                         <th>Deskripsi</th>
                         <th>Foto 1</th>
                         <th>Foto 2</th>
@@ -43,7 +43,7 @@
                         <tr class="{{ $program->trashed() ? 'text-muted' : '' }}">
                             <td scope="row">{{ $no++ }}</td>
                             <td>{{ optional($program)->nama_program }}</td>
-                            <td>{{ optional($program)->tittle }}</td>
+                            {{-- <td>{{ optional($program)->tittle }}</td> --}}
                             <td>{{ optional($program)->deskripsi }}</td>
                             <td>
                                 @if ($program->foto)

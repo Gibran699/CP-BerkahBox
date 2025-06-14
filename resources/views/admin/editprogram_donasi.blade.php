@@ -42,7 +42,7 @@
                                 </span>
                             </div>
 
-                            <div class="form-group mt-1">
+                            {{-- <div class="form-group mt-1">
                                 <label class="text-secondary mb-2">Tittle</label>
                                 <input type="text" class="form-control border border-secondary form-control"
                                     name="tittle" required value="{{ $data->tittle }}">
@@ -52,7 +52,7 @@
                                         {{ $message }}
                                     @enderror
                                 </span>
-                            </div>
+                            </div> --}}
 
                             <div class="form-group mt-1">
                                 <label class="text-secondary mb-2">Deskripsi</label>

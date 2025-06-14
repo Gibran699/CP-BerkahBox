@@ -36,6 +36,9 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('galeri.galeri') ? 'active-orange' : '' }}" href="{{ route('galeri.galeri') }}">Galeri</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('profil.program') ? 'active-orange' : '' }}" href="{{ route('profil.program') }}">Program</a>
+                </li>
             </ul>
 
             <!-- Dropdown untuk Dashboard dan Logout -->

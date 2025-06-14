@@ -37,6 +37,7 @@ Route::get('/profil/sejarah', [UserProfilController::class, 'UserSejarah'])->nam
 Route::get('/profil/visimisi', [UserProfilController::class, 'UserVisi'])->name('profil.visimisi');
 Route::get('/profil/struktur', [UserProfilController::class, 'UserStruktur'])->name('profil.struktur');
 Route::get('/profil/fasilitas', [UserProfilController::class, 'UserFasilitas'])->name('profil.fasilitas');
+Route::get('/profil/program', [UserProfilController::class, 'UserProgram'])->name('profil.program');
 
 // submit user
 Route::get('/donasi/user', [UserDonasiController::class, 'showDonasiForm'])->name('donasi.donasi');
@@ -89,7 +90,7 @@ Route::group(['middleware' => ['auth', 'admin']], function ()
 {
     // login
     Route::get('/admin/admin', [LoginController::class,'adminHome'])->name('admin.admin');
-    
+
     // program
     Route::get('/admin/program_donasi', [AdminController::class, 'adminProgram'])->name('admin.program_donasi');
     Route::get('/admin/tambahprogram_donasi', [AdminController::class, 'tambahProgram'])->name('admin.tambahprogram_donasi');

@@ -43,11 +43,11 @@
                 <span>Fasilitas</span></a>
         </li>
 
-        {{-- <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.program_donasi') }}">
                 <i class="fas fa-hand-holding-heart"></i>
-                <span>Program Donasi</span></a>
-        </li> --}}
+                <span>Program</span></a>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.donasi') }}">
@@ -84,7 +84,7 @@
                 <i class="fas fa-file-alt"></i>
                 <span>Laporan Donasi</span></a>
         </li> --}}
-{{-- 
+{{--
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.laporan_pengeluaran') }}">
                 <i class="fas fa-file-invoice-dollar"></i>
