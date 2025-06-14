@@ -11,7 +11,6 @@
 
     <div class="card-body">
 
-        {{-- ✅ Upload Gambar Struktur Organisasi --}}
         <div class="mb-4">
             <h6 class="font-weight-bold text-success">Upload Gambar Struktur Organisasi (Tampilan Frontend)</h6>
 

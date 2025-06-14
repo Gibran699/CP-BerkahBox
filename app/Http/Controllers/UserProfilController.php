@@ -11,6 +11,7 @@ use App\Models\Visimisi;
 use App\Models\Fasilitas;
 use App\Models\Pengajuan;
 use App\Models\Infodonasi;
+use App\Models\StrukturGambar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,12 +25,15 @@ class UserProfilController extends Controller
         return view ("profil.visimisi", compact('visimisi', 'kontak'));
     }
 
-    public function UserStruktur(){
+    public function UserStruktur()
+    {
         $struktur = Struktur::all();
         $kontak = Kontak::all();
-        return view ("profil.struktur", compact('struktur', 'kontak'));
-    }
+        $gambar = StrukturGambar::latest()->first(); // Ambil gambar terbaru
 
+        return view('profil.struktur', compact('struktur', 'kontak', 'gambar'));
+    }
+    
     public function UserSejarah(){
         $sejarah = Sejarah::all();
         $kontak = Kontak::all();

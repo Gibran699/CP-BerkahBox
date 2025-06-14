@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\StrukturGambar; // <-- Tambahkan ini
+use App\Models\StrukturGambar; 
 
 class StrukturGambarController extends Controller
 {
@@ -27,7 +27,8 @@ class StrukturGambarController extends Controller
 
     public function show()
     {
-        $gambar = StrukturGambar::latest()->first();
+        $gambar = StrukturGambar::latest()->first(); 
+        dd($gambar);
         return view('profil.struktur', compact('gambar'));
     }
 

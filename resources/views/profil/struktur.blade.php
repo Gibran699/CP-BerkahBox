@@ -17,20 +17,10 @@
             <p class="text-center text-muted mt-5">Belum ada gambar struktur yang diunggah.</p>
         @endif
 
-        @if (count($struktur) > 1)
+        @if (!empty($struktur) && count($struktur) > 1)
         <!-- Card Slider -->
         <div class="mt-5 position-relative">
             <h4 class="fw-bold mb-3 text-center">Lihat Semua Pengurus</h4>
-            
-            <!-- Tombol Navigasi -->
-            <button class="btn btn-light d-none d-md-block position-absolute top-50 start-0 translate-middle-y z-3"
-                style="font-size: 2rem;" onclick="scrollToCard(-1)">
-                &#60;
-            </button>
-            <button class="btn btn-light d-none d-md-block position-absolute top-50 end-0 translate-middle-y z-3"
-                style="font-size: 2rem;" onclick="scrollToCard(1)">
-                &#62;
-            </button>
 
             <!-- Slider -->
             <div class="overflow-auto px-2" id="slider-wrapper" style="max-width: 100%; margin: 0 auto;">
@@ -80,19 +70,6 @@
 <!-- Script Slider -->
 <script>
     const track = document.getElementById('slider-track');
-    const cardWidth = 300 + 24;
-    const totalCards = {{ count($struktur) }};
-    const visibleCards = 3;
-    let currentIndex = 0;
-
-    function scrollToCard(direction) {
-        currentIndex += direction;
-        if (currentIndex < 0) currentIndex = 0;
-        if (currentIndex > totalCards - visibleCards) currentIndex = totalCards - visibleCards;
-
-        const scrollTo = currentIndex * cardWidth;
-        track.style.transform = `translateX(-${scrollTo}px)`;
-    }
 
     // Modal trigger
     document.querySelectorAll('.person-card').forEach(card => {
