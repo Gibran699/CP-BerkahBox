@@ -33,7 +33,7 @@
                         <div class="col-lg-6 col-md-12" style="margin-bottom: 10px;">
                             <div class="map-container" style="width: 100%; height: 300px;">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.541037050033!2d102.16035317373253!3d1.449827298536533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d15fe2b7de43bb%3A0xf85e81d2c19aaa80!2sRumah%20Qur&#39;an%20%26%20Rumah%20Yatim%20Aisyah!5e0!3m2!1sid!2sid!4v1728145697270!5m2!1sid!2sid"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.9684602356674!2d116.8590791737711!3d-1.1826125988060812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df149022cf663d3%3A0x57aeba6af5abde40!2sMasjid%20Berkah%20Box%20-%20KM11%20-%20Balikpapan!5e0!3m2!1sid!2sid!4v1749885754146!5m2!1sid!2sid"
                                     width="100%" height="100%" style="border: 0;" allowfullscreen=""
                                     loading="lazy"></iframe>
                             </div>

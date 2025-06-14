@@ -18,13 +18,6 @@
             </div>
             <div class="col-12 col-sm-4 mb-4">
                 <div class="border-item text-center shadow rounded">
-                    <img src="../icon/ikon2.png" alt="Pengajuan Donasi">
-                    <h5>Pengajuan Donasi</h5>
-                    <p>{{ $jumlahPengajuan }}</p>
-                </div>
-            </div>
-            <div class="col-12 col-sm-4 mb-4">
-                <div class="border-item text-center shadow rounded">
                     <img src="../icon/ikon3.png" alt="Jumlah Donatur">
                     <h5>Jumlah Donatur</h5>
                     <p>{{ $jumlahDonatur }}</p>

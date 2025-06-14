@@ -12,6 +12,8 @@ use App\Http\Controllers\UserDonasiController;
 use App\Http\Controllers\UserProfilController;
 use pp\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\DonasiFormController;
+use App\Http\Controllers\StrukturGambarController;
+
 use Illuminate\Support\Facades\Artisan;
 
 
@@ -201,6 +203,8 @@ Route::post('/postEditDonasijemput/{id_donasi_jemput}', [ProfilController::class
 // struktur Post
 Route::post('/postTambahStruktur', [ProfilController::class, 'postTambahStruktur'])->name('postTambahStruktur');
 Route::post('/postEditStruktur/{id_struktur_yayasan}', [ProfilController::class, 'postEditStruktur'])->name('postEditStruktur');
+Route::post('/admin/struktur-gambar/store', [StrukturGambarController::class, 'store'])->name('struktur-gambar.store');
+Route::get('/profil/struktur', [StrukturGambarController::class, 'show'])->name('profil.struktur');
 // end struktur
 
 

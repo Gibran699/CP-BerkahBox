@@ -10,7 +10,8 @@ use App\Models\Sejarah;
 use App\Models\Struktur;
 use App\Models\Visimisi;
 use App\Models\Pengajuan;
-use App\Models\Fasilitas; // Add this line
+use App\Models\Fasilitas; 
+use App\Models\StrukturGambar;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -209,20 +210,25 @@ class ProfilController extends Controller
     // end visimisi
 
     // struktur yayasan
-    public function adminStruktur(Request $request) {
+    public function adminStruktur(Request $request)
+    {
         $search = $request->input('search');
         $data = Struktur::when($search, function ($query) use ($search) {
             $query->where('struktur_yayasan', 'LIKE', '%' . $search . '%');
         })->paginate(5);
 
-        return view('admin.struktur_yayasan', compact('data'));
+        $strukturGambar = StrukturGambar::latest()->first();
+
+        return view('admin.struktur_yayasan', compact('data', 'strukturGambar'));
     }
 
-    public function tambahStruktur() {
+    public function tambahStruktur()
+    {
         return view('admin.tambahstruktur_yayasan');
     }
 
-    public function postTambahStruktur(Request $request) {
+    public function postTambahStruktur(Request $request)
+    {
         $request->validate([
             'nama_pengurus' => 'required',
             'jabatan' => 'required',
@@ -233,12 +239,11 @@ class ProfilController extends Controller
         $struktur->id = Auth::id();
         $struktur->nama_pengurus = $request->nama_pengurus;
         $struktur->jabatan = $request->jabatan;
+
         if ($request->hasFile('foto_pengurus')) {
             $file = $request->file('foto_pengurus');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
+            $filename = time() . '.' . $file->getClientOriginalExtension();
 
-            // Pastikan file berhasil diupload
             if ($file->move('foto/', $filename)) {
                 $struktur->foto_pengurus = $filename;
             } else {
@@ -248,22 +253,22 @@ class ProfilController extends Controller
 
         $struktur->save();
 
-        if ($struktur) {
-            return back()->with('success', 'Struktur Yayasan Berhasil ditambahkan!');
-        } else {
-            return back()->with('failed', 'Gagal Menambahkan Struktur Yayasan!');
-        }
+        return $struktur
+            ? back()->with('success', 'Struktur Yayasan Berhasil ditambahkan!')
+            : back()->with('failed', 'Gagal Menambahkan Struktur Yayasan!');
     }
 
-    public function editStruktur($id_struktur_yayasan){
+    public function editStruktur($id_struktur_yayasan)
+    {
         $data = Struktur::find($id_struktur_yayasan);
         if (!$data) {
             return redirect()->route('admin.struktur_yayasan')->with('failed', 'Data tidak ditemukan!');
         }
-        return view('admin.editstruktur_yayasan', compact('data'));}
+        return view('admin.editstruktur_yayasan', compact('data'));
+    }
 
-
-    public function postEditStruktur(Request $request, $id_struktur_yayasan){
+    public function postEditStruktur(Request $request, $id_struktur_yayasan)
+    {
         $request->validate([
             'nama_pengurus' => 'required',
             'jabatan' => 'required',
@@ -280,46 +285,62 @@ class ProfilController extends Controller
         $struktur->jabatan = $request->jabatan;
 
         if ($request->hasFile('foto_pengurus')) {
-            // Hapus foto lama jika ada
             $filepath = 'foto/' . $struktur->foto_pengurus;
             if (File::exists($filepath)) {
                 File::delete($filepath);
             }
 
             $file = $request->file('foto_pengurus');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
+            $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move('foto/', $filename);
             $struktur->foto_pengurus = $filename;
         }
 
         $struktur->save();
 
-        if ($struktur) {
-            return back()->with('success', 'Struktur Pengurus berhasil diupdate!');
-        } else {
-            return back()->with('failed', 'Gagal mengupdate Struktur Pengurus!');
-        }
-}
+        return $struktur
+            ? back()->with('success', 'Struktur Pengurus berhasil diupdate!')
+            : back()->with('failed', 'Gagal mengupdate Struktur Pengurus!');
+    }
 
-    public function deleteStruktur($id_struktur_yayasan){
+    public function deleteStruktur($id_struktur_yayasan)
+    {
         $data = Struktur::find($id_struktur_yayasan);
-        $filepath = 'foto/' . $data->foto_pengurus;
-
-            if (File::exists($filepath)) {
-                File::delete($filepath);
-            }
 
         if (!$data) {
             return back()->with('failed', 'Data tidak ditemukan.');
         }
+
+        $filepath = 'foto/' . $data->foto_pengurus;
+        if (File::exists($filepath)) {
+            File::delete($filepath);
+        }
+
         try {
             $data->delete();
             return back()->with('success', 'Struktur Pengurus berhasil dihapus!');
         } catch (\Exception $e) {
             return back()->with('failed', 'Gagal menghapus data: ' . $e->getMessage());
-        }}
-    // end Struktur Yayasan
+        }
+    }
+
+    // Tambahan: Untuk menyimpan gambar struktur yayasan (frontend)
+    public function storeStrukturGambar(Request $request)
+    {
+        $request->validate([
+            'gambar' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        $file = $request->file('gambar');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('struktur'), $filename);
+
+        StrukturGambar::create([
+            'gambar' => $filename
+        ]);
+
+        return back()->with('success', 'Gambar struktur berhasil diunggah.');
+    }
 
 
     // pengajuan donasi

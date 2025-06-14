@@ -8,102 +8,36 @@
             <h2 class="sub-judul fw-bold">STRUKTUR ORGANISASI</h2>
         </div>
 
-        <div style="margin-top: 100px;"></div> 
-        <!-- Struktur Hirarkis -->
-        <div class="d-flex flex-column align-items-center text-center">
-            {{-- Pembina --}}
-            @foreach ($struktur as $item)
-                @if ($item->jabatan == 'Pembina Berkah Box Balikpapan')
-                    <div class="position-relative">
-                        <div class="person">
-                            <img src="{{ asset('foto/' . $item->foto_pengurus) }}" class="rounded-circle border border-success mb-2" width="100" height="100" alt="{{ $item->nama_pengurus }}">
-                            <h6>{{ $item->nama_pengurus }}</h6>
-                            <p class="text-muted">{{ $item->jabatan }}</p>
-                        </div>
-                        <div class="connector-vertical mb-2"></div>
-                    </div>
-                @endif
-            @endforeach
-
-            {{-- Ketua --}}
-            @foreach ($struktur as $item)
-                @if ($item->jabatan == 'Ketua Berkah Box Balikpapan')
-                    <div class="position-relative">
-                        <div class="person">
-                            <img src="{{ asset('foto/' . $item->foto_pengurus) }}" class="rounded-circle border border-success mb-2" width="100" height="100" alt="{{ $item->nama_pengurus }}">
-                            <h6>{{ $item->nama_pengurus }}</h6>
-                            <p class="text-muted">{{ $item->jabatan }}</p>
-                        </div>
-                        <div class="connector-horizontal mb-2"></div>
-                    </div>
-                @endif
-            @endforeach
-
-            {{-- Sekretaris & Bendahara --}}
-            <div class="d-flex flex-wrap justify-content-center gap-4">
-                @foreach ($struktur as $item)
-                    @if ($item->jabatan == 'Sekretaris Berkah Box Balikpapan' || $item->jabatan == 'Bendahara Berkah Box Balikpapan')
-                        <div class="position-relative">
-                            <div class="person">
-                                <img src="{{ asset('foto/' . $item->foto_pengurus) }}" class="rounded-circle border border-success mb-2" width="100" height="100" alt="{{ $item->nama_pengurus }}">
-                                <h6>{{ $item->nama_pengurus }}</h6>
-                                <p class="text-muted">{{ $item->jabatan }}</p>
-                            </div>
-                            <div class="connector-vertical"></div>
-                        </div>
-                    @endif
-                @endforeach
+        <!-- Gambar Struktur Organisasi (Dari DB) -->
+        @if ($gambar && $gambar->gambar)
+            <div class="text-center mt-5">
+                <img src="{{ asset('struktur/' . $gambar->gambar) }}" alt="Struktur Organisasi" class="img-fluid" style="max-width: 100%; height: auto;">
             </div>
-
-            {{-- Pengawas --}}
-            @foreach ($struktur as $item)
-                @if ($item->jabatan == 'Ketua Pengawas Berkah Box Balikpapan')
-                    <div class="position-relative">
-                        <div class="person">
-                            <img src="{{ asset('foto/' . $item->foto_pengurus) }}" class="rounded-circle border border-success mb-2" width="100" height="100" alt="{{ $item->nama_pengurus }}">
-                            <h6>{{ $item->nama_pengurus }}</h6>
-                            <p class="text-muted">{{ $item->jabatan }}</p>
-                        </div>
-                        <div class="connector-vertical mb-2"></div>
-                    </div>
-                @endif
-            @endforeach
-
-            {{-- Anggota --}}
-            <div class="d-flex flex-wrap justify-content-center gap-4">
-                @foreach ($struktur as $item)
-                    @if ($item->jabatan == 'Anggota Berkah Box Balikpapan')
-                        <div class="person">
-                            <img src="{{ asset('foto/' . $item->foto_pengurus) }}" class="rounded-circle border border-success mb-2" width="100" height="100" alt="{{ $item->nama_pengurus }}">
-                            <h6>{{ $item->nama_pengurus }}</h6>
-                            <p class="text-muted">{{ $item->jabatan }}</p>
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>
-
-        <div style="margin-top: 100px;"></div> 
+        @else
+            <p class="text-center text-muted mt-5">Belum ada gambar struktur yang diunggah.</p>
+        @endif
 
         @if (count($struktur) > 1)
-        <!-- Tambahan: Card Slider -->
+        <!-- Card Slider -->
         <div class="mt-5 position-relative">
             <h4 class="fw-bold mb-3 text-center">Lihat Semua Pengurus</h4>
             
             <!-- Tombol Navigasi -->
-            <button class="btn btn-light position-absolute top-50 start-0 translate-middle-y z-3" style="font-size: 2rem;" onclick="scrollToCard(-1)">
+            <button class="btn btn-light d-none d-md-block position-absolute top-50 start-0 translate-middle-y z-3"
+                style="font-size: 2rem;" onclick="scrollToCard(-1)">
                 &#60;
             </button>
-            <button class="btn btn-light position-absolute top-50 end-0 translate-middle-y z-3" style="font-size: 2rem;" onclick="scrollToCard(1)">
+            <button class="btn btn-light d-none d-md-block position-absolute top-50 end-0 translate-middle-y z-3"
+                style="font-size: 2rem;" onclick="scrollToCard(1)">
                 &#62;
             </button>
-        
+
             <!-- Slider -->
-            <div class="overflow-hidden px-2" id="slider-wrapper" style="max-width: 960px; margin: 0 auto;">
-                <div id="slider-track" class="d-flex transition-all {{ count($struktur) === 1 ? 'justify-content-center' : '' }}" style="gap: 24px;">
+            <div class="overflow-auto px-2" id="slider-wrapper" style="max-width: 100%; margin: 0 auto;">
+                <div id="slider-track" class="d-flex flex-nowrap transition-all" style="gap: 16px; min-width: max-content;">
                     @foreach ($struktur as $item)
                         <div class="card text-center flex-shrink-0 person-card"
-                            style="width: 300px; border: 1px solid #ddd; cursor: pointer;"
+                            style="width: 240px; border: 1px solid #ddd; cursor: pointer;"
                             data-bs-toggle="modal"
                             data-bs-target="#pengurusModal"
                             data-nama="{{ $item->nama_pengurus }}"
@@ -112,9 +46,9 @@
                             <div class="card-body">
                                 <img src="{{ asset('foto/' . $item->foto_pengurus) }}"
                                     class="rounded-circle border border-success mb-3"
-                                    width="120" height="120"
+                                    width="100" height="100"
                                     alt="{{ $item->nama_pengurus }}">
-                                <h5 class="fw-bold">{{ $item->nama_pengurus }}</h5>
+                                <h6 class="fw-bold">{{ $item->nama_pengurus }}</h6>
                                 <p class="text-muted small">{{ $item->jabatan }}</p>
                             </div>
                         </div>
@@ -189,13 +123,23 @@
     }
 
     #slider-track {
-        justify-content: center;
+        justify-content: start;
+        overflow-x: auto;
     }
 
-    @media (min-width: 768px) {
+    @media (max-width: 768px) {
+        #slider-wrapper {
+            padding: 0 10px;
+        }
+
+        .person-card {
+            width: 200px !important;
+        }
+
         #slider-track {
-            justify-content: start;
+            gap: 12px !important;
         }
     }
 </style>
+
 @endsection

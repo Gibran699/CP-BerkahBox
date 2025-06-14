@@ -8,9 +8,41 @@
             <h6 class="m-0 font-weight-bold text-primary">Struktur Organisasi Yayasan</h6>
         </div>
     </div>
+
     <div class="card-body">
+
+        {{-- ✅ Upload Gambar Struktur Organisasi --}}
+        <div class="mb-4">
+            <h6 class="font-weight-bold text-success">Upload Gambar Struktur Organisasi (Tampilan Frontend)</h6>
+
+            @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif
+
+            <form action="{{ route('struktur-gambar.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                    <input type="file" name="gambar" class="form-control-file" required>
+                </div>
+                <button type="submit" class="btn btn-success mt-2">Upload</button>
+            </form>
+
+            @if(isset($strukturGambar) && $strukturGambar->gambar)
+                <div class="mt-3">
+                    <p class="font-italic">Gambar saat ini:</p>
+                    <img src="{{ asset('struktur/' . $strukturGambar->gambar) }}" alt="Struktur Organisasi" class="img-fluid" style="max-height: 300px;">
+                </div>
+            @endif
+        </div>
+
+        {{-- 🔵 Tombol Tambah --}}
         <a href="{{ route('admin.tambahstruktur_yayasan') }}" class="btn btn-primary mb-3">Tambah</a>
 
+        {{-- 🔵 Tabel Struktur --}}
         <div class="table-responsive">
             <table class="table table-bordered text-dark font-weight-bold" id="dataTable" width="100%" cellspacing="0">
                 <thead class="table-primary text-center">
@@ -53,7 +85,6 @@
             </table>
             {{ $data->links() }}
         </div>
-    </div>
     </div>
 
     <script>
