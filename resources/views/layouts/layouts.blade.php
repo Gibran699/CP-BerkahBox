@@ -33,23 +33,22 @@
                         <div class="col-lg-6 col-md-12" style="margin-bottom: 10px;">
                             <div class="map-container" style="width: 100%; height: 300px;">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.9684602356674!2d116.8590791737711!3d-1.1826125988060812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df149022cf663d3%3A0x57aeba6af5abde40!2sMasjid%20Berkah%20Box%20-%20KM11%20-%20Balikpapan!5e0!3m2!1sid!2sid!4v1749885754146!5m2!1sid!2sid"
+                                    src="{{ $kontak->maps_url }}"
                                     width="100%" height="100%" style="border: 0;" allowfullscreen=""
-                                    loading="lazy"></iframe>
+                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
                             </div>
                         </div>
 
                         <!-- Col Kontak -->
                         <div class="col-lg-6 col-md-12" style="margin-bottom: 10px;">
                             <h5 class="fw-bold mt-4" style="font-size: 20px; margin-bottom: 10px;">HUBUNGI KAMI</h5>
-                            <p style="font-size: 16px; margin-bottom: 10px;">Untuk Informasi Mengenai Berkah Box
-                                Berbagi Silahkan Hubungi:</p>
+                            <p style="font-size: 16px; margin-bottom: 10px;">Untuk Informasi Mengenai Berkah Box Berbagi Silahkan Hubungi:</p>
                             <ul class="nav flex-column" style="list-style: none; padding: 0; margin: 0;">
                                 <li style="margin-bottom: 5px;">
                                     <a href="#" class="nav-link text-dark"
                                         style="display: flex; align-items: center; font-size: 14px;">
-                                        <i class="fas fa-map-marker-alt"
-                                            style="margin-right: 10px; font-size: 16px;"></i>
+                                        <i class="fas fa-map-marker-alt" style="margin-right: 10px; font-size: 16px;"></i>
                                         {{ $kontak->alamat }}
                                     </a>
                                 </li>
@@ -71,6 +70,7 @@
                             </ul>
                         </div>
                     @endforeach
+
                 </div>
             </footer>
         </div>
