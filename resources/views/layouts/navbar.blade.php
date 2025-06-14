@@ -17,7 +17,7 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ request()->is('profil/*') ? 'active-orange' : '' }}" href="#" id="profilDropdown"
+                    <a class="nav-link dropdown-toggle {{ request()->routeIs('profil.sejarah', 'profil.visimisi', 'profil.struktur', 'profil.fasilitas') ? 'active-orange' : '' }}" href="#" id="profilDropdown"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Profil
                     </a>
