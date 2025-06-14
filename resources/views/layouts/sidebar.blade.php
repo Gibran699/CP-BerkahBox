@@ -38,6 +38,12 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.fasilitas') }}">
+                <i class="fas fa-building"></i>
+                <span>Fasilitas</span></a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.program_donasi') }}">
                 <i class="fas fa-hand-holding-heart"></i>
                 <span>Program Donasi</span></a>

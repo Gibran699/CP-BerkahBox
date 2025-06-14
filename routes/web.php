@@ -158,9 +158,71 @@ Route::group(['middleware' => ['auth', 'admin']], function ()
     Route::get('/admin/editkontak/{id_kontak}', [ProfilController::class, 'editKontak'])->name('admin.editkontak');
     Route::get('/admin/deletekontak/{id_kontak}', [ProfilController::class, 'deleteKontak'])->name('admin.deletekontak');
 
+    // fasilitas
+    Route::get('/admin/fasilitas', [ProfilController::class, 'adminFasilitas'])->name('admin.fasilitas');
+    Route::get('/admin/tambahfasilitas', [ProfilController::class, 'tambahFasilitas'])->name('admin.tambahfasilitas');
+    Route::get('/admin/editfasilitas/{id}', [ProfilController::class, 'editFasilitas'])->name('admin.editfasilitas');
+    Route::get('/admin/deletefasilitas/{id}', [ProfilController::class, 'deleteFasilitas'])->name('admin.deletefasilitas');
+
 });
 
 // post login
+Route::post('/postLogin', [LoginController::class, 'postLogin'])->name('postLogin');
+Route::post('/postRegister', [LoginController::class, 'postRegister'])->name('postRegister');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+// program POST
+Route::post('/postTambahProgram', [AdminController::class, 'postTambahProgram'])->name('postTambahProgram');
+Route::post('/postEditProgram/{id_program_donasi}', [AdminController::class, 'postEditProgram'])->name('postEditProgram');
+
+
+// donasi POST
+Route::post('/postTambahDonasi', [AdminController::class, 'postTambahDonasi'])->name('postTambahDonasi');
+Route::post('/postEditDonasi/{id_donasi_pembayaran}', [AdminController::class, 'postEditDonasi'])->name('postEditDonasi');
+
+
+
+// sejarah POST
+Route::post('/postTambahSejarah', [ProfilController::class, 'postTambahSejarah'])->name('postTambahSejarah');
+Route::post('/postEditSejarah/{id}', [ProfilController::class, 'postEditSejarah'])->name('postEditSejarah');
+
+
+// Visimisi Post
+Route::post('/postTambahVisimisi', [ProfilController::class, 'postTambahVisimisi'])->name('postTambahVisimisi');
+Route::post('/postEditVisimisi/{id_visimisi}', [ProfilController::class, 'postEditVisimisi'])->name('postEditVisimisi');
+
+// Pengajuan Post
+Route::post('/postEditPengajuan/{id_pengajuan_donasi}', [ProfilController::class, 'postEditPengajuan'])->name('postEditPengajuan');
+
+// Donasi Jemput Post
+Route::post('/postEditDonasijemput/{id_donasi_jemput}', [ProfilController::class, 'postEditDonasijemput'])->name('postEditDonasijemput');
+
+// struktur Post
+Route::post('/postTambahStruktur', [ProfilController::class, 'postTambahStruktur'])->name('postTambahStruktur');
+Route::post('/postEditStruktur/{id_struktur_yayasan}', [ProfilController::class, 'postEditStruktur'])->name('postEditStruktur');
+// end struktur
+
+
+// Galeri Post
+Route::post('/postTambahGaleri', [ProfilController::class, 'postTambahGaleri'])->name('postTambahGaleri');
+Route::post('/postEditGaleri/{id_galerii}', [ProfilController::class, 'postEditGaleri'])->name('postEditGaleri');
+// end galeri
+
+
+// Kontak Post
+Route::post('/postTambahKontak', [ProfilController::class, 'postTambahKontak'])->name('postTambahKontak');
+Route::post('/postEditKontak/{id_kontak}', [ProfilController::class, 'postEditKontak'])->name('postEditKontak');
+// end kontak
+
+// Fasilitas POST
+Route::post('/postTambahFasilitas', [ProfilController::class, 'postTambahFasilitas'])->name('postTambahFasilitas');
+Route::post('/postEditFasilitas/{id}', [ProfilController::class, 'postEditFasilitas'])->name('postEditFasilitas');
+
+Route::get('/run-donation-reminder', function () {
+    Artisan::call('donation:reminder');
+    return response()->json(['message' => 'Donation reminder executed']);
+});
 
 Route::post('/postLogin', [LoginController::class, 'postLogin'])->name('postLogin');
 Route::post('/postRegister', [LoginController::class, 'postRegister'])->name('postRegister');

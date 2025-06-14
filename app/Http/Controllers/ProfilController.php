@@ -10,6 +10,7 @@ use App\Models\Sejarah;
 use App\Models\Struktur;
 use App\Models\Visimisi;
 use App\Models\Pengajuan;
+use App\Models\Fasilitas; // Add this line
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -21,17 +22,17 @@ class ProfilController extends Controller
     public function admin(){
         return view('admin.admin');
     }
-    
+
     // ini sejarah
     public function adminSejarah(Request $request) {
         $search = $request->input('search');
         $data = Sejarah::when($search, function ($query) use ($search) {
             $query->where('sejarah', 'LIKE', '%' . $search . '%');
         })->paginate(100);
-    
+
         return view('admin.sejarah', compact('data'));
     }
-    
+
 
     public function tambahSejarah() {
         return view('admin.tambahsejarah');
@@ -49,7 +50,7 @@ class ProfilController extends Controller
 
         $sejarah = new Sejarah;
         $sejarah->id = Auth::id();
-        
+
         $sejarah ->tekssejarah  = $request->tekssejarah;
         $sejarah ->perjalananAwal  = $request->perjalananAwal;
         $sejarah ->awalPendirian  = $request->awalPendirian;
@@ -57,9 +58,9 @@ class ProfilController extends Controller
         $sejarah ->masaKini  = $request->masaKini;
         $sejarah ->tekssejarah2  = $request->tekssejarah2;
         $sejarah ->save();
-        
+
         if($sejarah ) {
-            return back()->with('success', 'Sejarah Yayasan Berhasil ditambahkan!'); 
+            return back()->with('success', 'Sejarah Yayasan Berhasil ditambahkan!');
         } else {
             return back()->with('failed', 'Gagal Menambahkan Sejarah Yayasan!');
         }
@@ -77,9 +78,9 @@ class ProfilController extends Controller
             'masaKini' => 'required',
             'tekssejarah2' => 'required',
         ]);
-        
+
         $sejarah = Sejarah::find($id);
-        
+
         $sejarah ->tekssejarah  = $request->tekssejarah;
         $sejarah ->perjalananAwal  = $request->perjalananAwal;
         $sejarah ->awalPendirian  = $request->awalPendirian;
@@ -87,9 +88,9 @@ class ProfilController extends Controller
         $sejarah ->masaKini  = $request->masaKini;
         $sejarah ->tekssejarah2  = $request->tekssejarah2;
         $sejarah ->save();
-        
+
         if($sejarah){
-            return back()->with('success', 'sejarah berhasil di update!'); 
+            return back()->with('success', 'sejarah berhasil di update!');
         } else {
             return back()->with('failed', 'Gagal mengupdate sejarah!');
         }
@@ -115,27 +116,27 @@ class ProfilController extends Controller
         $data = Visimisi::when($search, function ($query) use ($search) {
             $query->where('visimisi', 'LIKE', '%' . $search . '%');
         })->paginate(5);
-    
+
         return view('admin.visimisi', compact('data'));
     }
-    
+
     public function tambahVisimisi() {
         return view('admin.tambahvisimisi');
     }
-    
+
     public function postTambahVisimisi(Request $request) {
         $request->validate([
             'visi' => 'required',
             'misi' => 'required',
         ]);
-    
+
         $visimisi = new Visimisi;
         $visimisi->visi = $request->visi;
         $visimisi->misi = strip_tags(nl2br($request->misi));
         $visimisi->id = Auth::id();
-    
+
         $visimisi->save();
-    
+
         if ($visimisi) {
             return back()->with('success', 'Visi misi Yayasan Berhasil ditambahkan!');
         } else {
@@ -191,21 +192,21 @@ class ProfilController extends Controller
         $data = Struktur::when($search, function ($query) use ($search) {
             $query->where('struktur_yayasan', 'LIKE', '%' . $search . '%');
         })->paginate(5);
-    
+
         return view('admin.struktur_yayasan', compact('data'));
     }
-    
+
     public function tambahStruktur() {
         return view('admin.tambahstruktur_yayasan');
     }
-    
+
     public function postTambahStruktur(Request $request) {
         $request->validate([
             'nama_pengurus' => 'required',
             'jabatan' => 'required',
             'foto_pengurus' => 'required|image|max:5120',
         ]);
-    
+
         $struktur = new Struktur;
         $struktur->id = Auth::id();
         $struktur->nama_pengurus = $request->nama_pengurus;
@@ -214,7 +215,7 @@ class ProfilController extends Controller
             $file = $request->file('foto_pengurus');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
-        
+
             // Pastikan file berhasil diupload
             if ($file->move('foto/', $filename)) {
                 $struktur->foto_pengurus = $filename;
@@ -222,9 +223,9 @@ class ProfilController extends Controller
                 return back()->with('failed', 'Gagal mengupload gambar. Harap pilih gambar yang valid.');
             }
         }
-    
+
         $struktur->save();
-    
+
         if ($struktur) {
             return back()->with('success', 'Struktur Yayasan Berhasil ditambahkan!');
         } else {
@@ -239,7 +240,7 @@ class ProfilController extends Controller
         }
         return view('admin.editstruktur_yayasan', compact('data'));}
 
-    
+
     public function postEditStruktur(Request $request, $id_struktur_yayasan){
         $request->validate([
             'nama_pengurus' => 'required',
@@ -331,14 +332,14 @@ class ProfilController extends Controller
             'status' => 'required|in:Diterima,Pending,Ditolak',
             'id_program_donasi' => 'required|exists:program_donasi,id_program_donasi',
             ]);
-        
+
             $pengajuan = Pengajuan::findOrFail($id_pengajuan_donasi);
             $pengajuan->id_program_donasi = $request->id_program_donasi;
             $pengajuan->nama_lengkap = $request->nama_lengkap;
             $pengajuan->no_telp = $request->no_telp;
             $pengajuan->desc_pengajuan = $request->desc_pengajuan;
             $pengajuan->status = $request->status;
-        
+
             if ($request->hasFile('foto1')) {
                 if (File::exists(public_path('fotopengajuan/' . $pengajuan->foto1))) {
                     File::delete(public_path('fotopengajuan/' . $pengajuan->foto1));
@@ -351,7 +352,7 @@ class ProfilController extends Controller
                     return back()->with('failed', 'Gagal mengupload foto1. Harap pilih gambar yang valid.');
                 }
             }
-        
+
             if ($request->hasFile('foto2')) {
                 if (File::exists(public_path('fotopengajuan/' . $pengajuan->foto2))) {
                     File::delete(public_path('fotopengajuan/' . $pengajuan->foto2));
@@ -364,9 +365,9 @@ class ProfilController extends Controller
                     return back()->with('failed', 'Gagal mengupload foto2. Harap pilih gambar yang valid.');
                 }
             }
-        
+
             $pengajuan->save();
-        
+
             if ($pengajuan) {
                 return back()->with('success', 'Pengajuan berhasil diupdate!');
             } else {
@@ -390,7 +391,7 @@ class ProfilController extends Controller
                 return back()->with('failed', 'Pengajuan Kegiatan tidak ditemukan!');
             }
         }
-    // end pengajuan 
+    // end pengajuan
 
 // donasi jemput
 public function adminDonasijemput(Request $request) {
@@ -423,41 +424,41 @@ public function adminDonasijemput(Request $request) {
             'status' => 'required|in:Diterima,Pending,Ditolak',
             'id_program_donasi' => 'required|exists:program_donasi,id_program_donasi',
         ]);
-    
+
         $jemput = Jemput::findOrFail($id_donasi_jemput);
-    
+
         $jemput->id_program_donasi = $request->id_program_donasi;
         $jemput->nama_donatur = $request->nama_donatur;
         $jemput->no_hp = $request->no_hp;
         $jemput->barang_donasi = $request->barang_donasi;
         $jemput->status = $request->status;
-    
+
         if ($request->hasFile('foto_pengambilan')) {
             if ($jemput->foto_pengambilan && File::exists(public_path('fotodonasijemput/' . $jemput->foto_pengambilan))) {
                 File::delete(public_path('fotodonasijemput/' . $jemput->foto_pengambilan));
             }
-    
+
             $file = $request->file('foto_pengambilan');
             $filename = time() . '_1.' . $file->getClientOriginalExtension();
             $file->move(public_path('fotodonasijemput/'), $filename);
             $jemput->foto_pengambilan = $filename;
         }
-    
+
         if ($request->hasFile('foto_penyerahan')) {
             if ($jemput->foto_penyerahan && File::exists(public_path('fotodonasijemput/' . $jemput->foto_penyerahan))) {
                 File::delete(public_path('fotodonasijemput/' . $jemput->foto_penyerahan));
             }
-    
+
             $file = $request->file('foto_penyerahan');
             $filename = time() . '_2.' . $file->getClientOriginalExtension();
             $file->move(public_path('fotodonasijemput/'), $filename);
             $jemput->foto_penyerahan = $filename;
         }
-    
+
         $jemput->save();
-    
+
         return back()->with('success', 'Jemput Donasi berhasil diupdate!');
-    }    
+    }
 
 
         public function deleteDonasijemput($id_donasi_jemput){
@@ -484,10 +485,10 @@ public function adminDonasijemput(Request $request) {
         $data = Galeri::when($search, function ($query) use ($search) {
             $query->where('tanggal', 'LIKE', '%' . $search . '%');
         })->paginate(100);
-    
+
         return view('admin.galeri', compact('data'));
     }
-    
+
 
     public function tambahGaleri() {
         return view('admin.tambahgaleri');
@@ -508,7 +509,7 @@ public function adminDonasijemput(Request $request) {
             $file = $request->file('foto');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
-            
+
             // Pastikan file berhasil diupload
             if ($file->move('foto/', $filename)) {
                 $galerii->foto = $filename;
@@ -519,7 +520,7 @@ public function adminDonasijemput(Request $request) {
         $galerii ->deskripsi  = $request->deskripsi;
         $galerii ->save();
         if($galerii ) {
-            return back()->with('success', 'Galeri Kegiatan Berhasil ditambahkan!'); 
+            return back()->with('success', 'Galeri Kegiatan Berhasil ditambahkan!');
         } else {
             return back()->with('failed', 'Gagal Menambahkan Galeri Kegiatan!');
         }
@@ -548,7 +549,7 @@ public function adminDonasijemput(Request $request) {
         if ($request->hasFile('foto')) {
             $oldFilePath = 'foto/' . $galerii->foto;
             if (File::exists($oldFilePath)) {
-                File::delete($oldFilePath); 
+                File::delete($oldFilePath);
             }
 
             $file = $request->file('foto');
@@ -579,7 +580,7 @@ public function adminDonasijemput(Request $request) {
         } else {
             return back()->with('failed', 'Gagal Menghapus Galeri Kegiatan!');
         }
-        
+
     }
     // end galeri
 
@@ -643,7 +644,7 @@ public function postEditKontak(Request $request, $id_kontak)
         'facebook' => 'required',
         'maps_url' => 'required|url',
     ]);
-    
+
 
     $kontak = Kontak::find($id_kontak);
 
@@ -679,4 +680,115 @@ public function deleteKontak($id_kontak)
     }
 }
     // end kontak
+
+    // Fasilitas
+    public function adminFasilitas(Request $request){
+        $search = $request->input('search');
+        $data = Fasilitas::when($search, function ($query) use ($search) {
+            $query->where('nama_fasilitas', 'LIKE', '%' . $search . '%');
+        })->paginate(100);
+        return view('admin.fasilitas', compact('data'));
+    }
+
+    public function tambahFasilitas(){
+        return view('admin.tambahfasilitas');
+    }
+
+    public function postTambahFasilitas(Request $request){
+        $request->validate([
+            'nama_fasilitas' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'gambar_fasilitas' => 'required|image|max:5120', // Max 5MB
+        ]);
+
+        $fasilitas = new \App\Models\Fasilitas();
+        $fasilitas->nama_fasilitas = $request->nama_fasilitas;
+        $fasilitas->deskripsi = $request->deskripsi;
+
+        if ($request->hasFile('gambar_fasilitas')) {
+            $file = $request->file('gambar_fasilitas');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            if ($file->move(public_path('fasilitas/'), $filename)) {
+                $fasilitas->gambar_fasilitas = $filename;
+            } else {
+                return back()->with('failed', 'Gagal mengupload gambar fasilitas. Harap pilih gambar yang valid.');
+            }
+        }
+
+        $fasilitas->save();
+
+        if ($fasilitas) {
+            return back()->with('success', 'Fasilitas berhasil ditambahkan!');
+        } else {
+            return back()->with('failed', 'Gagal menambahkan fasilitas!');
+        }
+    }
+
+    public function editFasilitas($id){
+        $data = \App\Models\Fasilitas::find($id);
+        if (!$data) {
+            return redirect()->route('admin.fasilitas')->with('failed', 'Data fasilitas tidak ditemukan!');
+        }
+        return view('admin.editfasilitas', compact('data'));
+    }
+
+    public function postEditFasilitas(Request $request, $id){
+        $request->validate([
+            'nama_fasilitas' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'gambar_fasilitas' => 'nullable|image|max:5120', // Max 5MB, nullable for update
+        ]);
+
+        $fasilitas = \App\Models\Fasilitas::find($id);
+        if (!$fasilitas) {
+            return back()->with('failed', 'Data fasilitas tidak ditemukan!');
+        }
+
+        $fasilitas->nama_fasilitas = $request->nama_fasilitas;
+        $fasilitas->deskripsi = $request->deskripsi;
+
+        if ($request->hasFile('gambar_fasilitas')) {
+            // Delete old image if exists
+            $oldFilePath = public_path('fasilitas/' . $fasilitas->gambar_fasilitas);
+            if (File::exists($oldFilePath)) {
+                File::delete($oldFilePath);
+            }
+
+            $file = $request->file('gambar_fasilitas');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            if ($file->move(public_path('fasilitas/'), $filename)) {
+                $fasilitas->gambar_fasilitas = $filename;
+            } else {
+                return back()->with('failed', 'Gagal mengupload gambar fasilitas. Harap pilih gambar yang valid.');
+            }
+        }
+
+        $fasilitas->save();
+
+        if ($fasilitas) {
+            return back()->with('success', 'Fasilitas berhasil diupdate!');
+        } else {
+            return back()->with('failed', 'Gagal mengupdate fasilitas!');
+        }
+    }
+
+    public function deleteFasilitas($id){
+        $fasilitas = \App\Models\Fasilitas::find($id);
+        if (!$fasilitas) {
+            return back()->with('failed', 'Data fasilitas tidak ditemukan.');
+        }
+
+        // Delete image file if exists
+        $filePath = public_path('fasilitas/' . $fasilitas->gambar_fasilitas);
+        if (File::exists($filePath)) {
+            File::delete($filePath);
+        }
+
+        try {
+            $fasilitas->delete();
+            return back()->with('success', 'Fasilitas berhasil dihapus!');
+        } catch (\Exception $e) {
+            return back()->with('failed', 'Gagal menghapus data fasilitas: ' . $e->getMessage());
+        }
+    }
 }
