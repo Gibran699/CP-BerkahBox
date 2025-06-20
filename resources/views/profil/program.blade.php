@@ -79,13 +79,13 @@
                     <div id="programCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img id="modalProgramImage1" src="/foto/{{ $item->foto }}" class="d-block w-100 img-fluid mb-3" alt="Program Image 1">
+                                <img id="modalProgramImage1" src="" class="d-block w-100 img-fluid mb-3" alt="Program Image 1">
                             </div>
                             <div class="carousel-item">
-                                <img id="modalProgramImage2" src="/foto/{{ $item->foto2 }}" class="d-block w-100 img-fluid mb-3" alt="Program Image 2">
+                                <img id="modalProgramImage2" src="" class="d-block w-100 img-fluid mb-3" alt="Program Image 2">
                             </div>
                             <div class="carousel-item">
-                                <img id="modalProgramImage3" src="/foto/{{ $item->foto3 }}" class="d-block w-100 img-fluid mb-3" alt="Program Image 3">
+                                <img id="modalProgramImage3" src="" class="d-block w-100 img-fluid mb-3" alt="Program Image 3">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#programCarousel" data-bs-slide="prev">
