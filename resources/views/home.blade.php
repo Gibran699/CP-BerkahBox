@@ -31,7 +31,7 @@
                     style="width: 60px; height: 60px; object-fit: contain;">
                 <h5>Partisipasi Donasi</h5>
                 <p class="mb-1">
-                    <span class="text-warning fw-bold" style="font-size: 1.25rem;">
+                    <span class="fw-bold" style="font-size: 1.25rem;color: #fd7e14;">
                         @if ($jumlahDonasi > 100)
                             100+
                         @else

@@ -63,7 +63,7 @@
                             <!-- Nominal -->
                             <div class="form-group mt-4">
                                 <label class="text-secondary mb-2">Nominal Donasi</label>
-                                <input type="number" class="form-control border border-secondary" name="nominal" required
+                                <input type="text" class="form-control border border-secondary" name="nominal" id="nominal" required
                                     value="{{ old('nominal') }}">
                                 <span class="text-danger">
                                     @error('nominal')
@@ -91,4 +91,19 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const nominalInput = document.getElementById('nominal');
+
+        nominalInput.addEventListener('input', function (e) {
+            // Ambil angka saja
+            let value = e.target.value.replace(/\D/g, '');
+
+            // Format dengan titik
+            let formatted = new Intl.NumberFormat('id-ID').format(value);
+
+            e.target.value = formatted;
+        });
+    </script>
+
 @endsection

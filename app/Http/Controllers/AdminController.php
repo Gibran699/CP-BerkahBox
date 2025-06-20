@@ -216,6 +216,10 @@ class AdminController extends Controller
 
     public function postTambahDonasi(Request $request)
     {
+        $request->merge([
+            'nominal' => str_replace('.', '', $request->nominal)
+        ]);
+        
         $request->validate([
             'nama_lengkap' => 'required|string|max:255',
             'no_telp' => 'required|string|max:20',

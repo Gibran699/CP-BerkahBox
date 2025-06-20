@@ -17,14 +17,16 @@
             <p class="text-center text-muted mt-5">Belum ada gambar struktur yang diunggah.</p>
         @endif
 
-        @if (!empty($struktur) && count($struktur) > 1)
+        @if ($struktur && $struktur->count())
         <!-- Card Slider -->
         <div class="mt-5 position-relative">
             <h4 class="fw-bold mb-3 text-center">Lihat Semua Pengurus</h4>
 
             <!-- Slider -->
             <div class="overflow-auto px-2" id="slider-wrapper" style="max-width: 100%; margin: 0 auto;">
-                <div id="slider-track" class="d-flex flex-nowrap transition-all" style="gap: 16px; min-width: max-content;">
+                <div id="slider-track"
+                    class="d-flex flex-nowrap transition-all {{ $struktur->count() <= 4 ? 'justify-content-center' : '' }}"
+                    style="gap: 16px; min-width: max-content;">
                     @foreach ($struktur as $item)
                         <div class="card text-center flex-shrink-0 person-card"
                             style="width: 240px; border: 1px solid #ddd; cursor: pointer;"
