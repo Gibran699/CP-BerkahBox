@@ -11,7 +11,7 @@ class StrukturGambarController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'gambar' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'gambar' => 'required|image|mimes:jpg,jpeg,png|max:5120',
         ]);
 
         $file = $request->file('gambar');
