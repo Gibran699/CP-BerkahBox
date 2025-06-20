@@ -27,11 +27,12 @@ class ProfilController extends Controller
     // ini sejarah
     public function adminSejarah(Request $request) {
         $search = $request->input('search');
+        $sejarahExists = Sejarah::exists(); 
         $data = Sejarah::when($search, function ($query) use ($search) {
             $query->where('sejarah', 'LIKE', '%' . $search . '%');
         })->paginate(100);
 
-        return view('admin.sejarah', compact('data'));
+        return view('admin.sejarah', compact('data', 'sejarahExists'));
     }
 
 
@@ -136,11 +137,12 @@ class ProfilController extends Controller
     // visimisi
     public function adminVisimisi(Request $request) {
         $search = $request->input('search');
+        $visimisiExists = visimisi::exists();
         $data = Visimisi::when($search, function ($query) use ($search) {
             $query->where('visimisi', 'LIKE', '%' . $search . '%');
         })->paginate(5);
 
-        return view('admin.visimisi', compact('data'));
+        return view('admin.visimisi', compact('data', 'visimisiExists'));
     }
 
     public function tambahVisimisi() {
@@ -632,16 +634,18 @@ public function adminDonasijemput(Request $request) {
     public function adminKontak(Request $request)
 {
     $search = $request->input('search');
+    $kontakExists = Kontak::exists();
     $data = Kontak::when($search, function ($query) use ($search) {
         $query->where('alamat', 'LIKE', '%' . $search . '%');
     })->paginate(100);
 
-    return view('admin.kontak', compact('data'));
+    return view('admin.kontak', compact('data', 'kontakExists'));
 }
 
 public function tambahKontak()
 {
-    return view('admin.tambahkontak');
+    $kontakExists = Kontak::exists(); // cek apakah sudah ada data kontak
+    return view('admin.tambahkontak', compact('kontakExists'));
 }
 
 public function postTambahKontak(Request $request)

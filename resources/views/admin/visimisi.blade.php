@@ -9,7 +9,14 @@
         </div>
     </div>
     <div class="card-body">
-        <a href="{{ route('admin.tambahvisimisi') }}" class="btn btn-primary mb-3">Tambah</a>
+        @if ($visimisiExists)
+            <button class="btn btn-secondary mb-3" disabled>Tambah</button>
+            <div class="alert alert-warning text-center">
+                Sudah ada data visi dan misi. Silakan edit atau hapus data yang ada.
+            </div>
+        @else
+            <a href="{{ route('admin.tambahvisimisi') }}" class="btn btn-primary mb-3">Tambah</a>
+        @endif
 
         <div class="table-responsive">
             <table class="table table-bordered text-dark font-weight-bold" id="dataTable" width="100%" cellspacing="0">
